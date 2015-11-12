@@ -11,6 +11,7 @@ module CoachClient
 
     def update
       url = @client.url + path
+      raise "User not found" unless exist?
       response = if @client.authenticated?(@username, @password)
                    AuthenticatedRequest.get(url, @username, @password)
                  else
@@ -24,15 +25,26 @@ module CoachClient
     end
 
     def save
-      raise "Unauthorized" unless @client.authenticated?(@username, @password)
+      url = @client.url + path
       vals = self.to_h
       vals.delete(:username)
       vals.delete_if { |_k, v| v.nil? }
       vals[:password] = vals.delete(:newpassword) if vals[:newpassword]
       payload = Gyoku.xml(user: vals)
-      response = AuthenticatedRequest.put(@client.url + path, @username,
-                                          @password, payload,
-                                          { content_type: :xml })
+      response = if exist?
+                   unless @client.authenticated?(@username, @password)
+                     raise "Unauthorized"
+                   end
+                   AuthenticatedRequest.put(@username,
+                                            @password, payload,
+                                            content_type: :xml)
+                 else
+                   begin
+                     Request.put(url, payload, content_type: :xml)
+                   rescue RestClient::Conflict
+                     raise "Incomplete user information"
+                   end
+                 end
       unless response.code == 200 || response.code == 201
         raise "Could not save user"
       end
@@ -45,6 +57,15 @@ module CoachClient
       raise "Unauthorized" unless @client.authenticated?(@username, @password)
       AuthenticatedRequest.delete(@client.url + path, @username, @password)
       true
+    end
+
+    def exist?
+      begin
+        Request.get(@client.url + path)
+        true
+      rescue RestClient::ResourceNotFound
+        false
+      end
     end
 
     def path
