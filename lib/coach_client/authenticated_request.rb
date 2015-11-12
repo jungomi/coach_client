@@ -1,6 +1,6 @@
 module CoachClient
-
-  class AuthenticatedRequest < Request
+  module AuthenticatedRequest
+    DEFAULT_HEADER = { accept: :json }
 
     def self.get(url, username, password, header={})
       header.merge!(DEFAULT_HEADER)
@@ -8,7 +8,7 @@ module CoachClient
                                              user: username,
                                              password: password,
                                              headers: header)
-      self.new(response)
+      Response.new(response, response.code)
     end
 
     def self.put(url, username, password, payload, header={})
@@ -17,7 +17,7 @@ module CoachClient
                                              user: username,
                                              password: password,
                                              payload: payload, headers: header)
-      self.new(response)
+      Response.new(response, response.code)
     end
 
     def self.post(url, username, password, payload, header={})
@@ -26,7 +26,7 @@ module CoachClient
                                              user: username,
                                              password: password,
                                              payload: payload, headers: header)
-      self.new(response)
+      Response.new(response, response.code)
     end
 
     def self.delete(url, username, password, header={})
@@ -35,7 +35,8 @@ module CoachClient
                                              user: username,
                                              password: password,
                                              headers: header)
-      self.new(response)
+      Response.new(response, response.code)
     end
   end
 end
+
