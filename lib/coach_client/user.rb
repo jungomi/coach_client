@@ -24,7 +24,7 @@ module CoachClient
     end
 
     def save
-      raise "Error: unauthorized" unless @client.authenticated?(@username, @password)
+      raise "Unauthorized" unless @client.authenticated?(@username, @password)
       vals = self.to_h
       vals.delete(:username)
       vals.delete_if { |_k, v| v.nil? }
@@ -34,7 +34,7 @@ module CoachClient
                                           @password, payload,
                                           { content_type: :xml })
       unless response.code == 200 || response.code == 201
-        raise "Error: could not save user"
+        raise "Could not save user"
       end
       @password = vals[:password]
       @newpassword = nil

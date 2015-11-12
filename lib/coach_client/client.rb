@@ -17,7 +17,11 @@ module CoachClient
 
     def get_user(username)
       user = User.new(self, username)
-      user.update
+      begin
+        user.update
+      rescue RestClient::Exception
+        raise "User not found"
+      end
     end
   end
 end
