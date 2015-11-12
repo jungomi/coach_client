@@ -1,3 +1,4 @@
+require 'gyoku'
 require 'rest-client'
 
 require 'coach_client/authenticated_request'
