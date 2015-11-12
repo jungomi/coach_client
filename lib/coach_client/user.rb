@@ -41,6 +41,12 @@ module CoachClient
       self
     end
 
+    def delete
+      raise "Unauthorized" unless @client.authenticated?(@username, @password)
+      AuthenticatedRequest.delete(@client.url + path, @username, @password)
+      true
+    end
+
     def path
       "users/#{@username}"
     end
