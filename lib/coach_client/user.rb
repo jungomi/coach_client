@@ -28,6 +28,15 @@ module CoachClient
       "users/#{@username}"
     end
 
+    def to_h
+      hash = {}
+      instance_variables.each do |var|
+        next if var.to_s == '@client'
+        hash[var.to_s.delete('@')] = instance_variable_get(var)
+      end
+      hash
+    end
+
     def to_s
       username.to_s
     end
