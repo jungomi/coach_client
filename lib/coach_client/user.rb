@@ -14,7 +14,6 @@ module CoachClient
     end
 
     def update
-      url = @client.url + path
       raise "User not found" unless exist?
       response = if @client.authenticated?(@username, @password)
                    CoachClient::AuthenticatedRequest.get(url, @username,
@@ -30,7 +29,6 @@ module CoachClient
     end
 
     def save
-      url = @client.url + path
       vals = self.to_h
       vals.delete(:username)
       vals.delete_if { |_k, v| v.nil? || v.to_s.empty? }
@@ -60,22 +58,22 @@ module CoachClient
 
     def delete
       raise "Unauthorized" unless @client.authenticated?(@username, @password)
-      CoachClient::AuthenticatedRequest.delete(@client.url + path, @username,
+      CoachClient::AuthenticatedRequest.delete(url, @username,
                                                @password)
       true
     end
 
     def exist?
       begin
-        CoachClient::Request.get(@client.url + path)
+        CoachClient::Request.get(url)
         true
       rescue RestClient::ResourceNotFound
         false
       end
     end
 
-    def path
-      "users/#{@username}"
+    def url
+      "#{@client.url}users/#{@username}"
     end
 
     def to_h
