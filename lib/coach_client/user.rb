@@ -13,9 +13,10 @@ module CoachClient
       url = @client.url + path
       raise "User not found" unless exist?
       response = if @client.authenticated?(@username, @password)
-                   AuthenticatedRequest.get(url, @username, @password)
+                   CoachClient::AuthenticatedRequest.get(url, @username,
+                                                         @password)
                  else
-                   Request.get(url)
+                   CoachClient::Request.get(url)
                  end
       response = response.to_h
       @realname = response[:realname]
@@ -35,12 +36,12 @@ module CoachClient
                    unless @client.authenticated?(@username, @password)
                      raise "Unauthorized"
                    end
-                   AuthenticatedRequest.put(@username,
-                                            @password, payload,
-                                            content_type: :xml)
+                   CoachClient::AuthenticatedRequest.put(@username,
+                                                         @password, payload,
+                                                         content_type: :xml)
                  else
                    begin
-                     Request.put(url, payload, content_type: :xml)
+                     CoachClient::Request.put(url, payload, content_type: :xml)
                    rescue RestClient::Conflict
                      raise "Incomplete user information"
                    end
@@ -55,13 +56,14 @@ module CoachClient
 
     def delete
       raise "Unauthorized" unless @client.authenticated?(@username, @password)
-      AuthenticatedRequest.delete(@client.url + path, @username, @password)
+      CoachClient::AuthenticatedRequest.delete(@client.url + path, @username,
+                                               @password)
       true
     end
 
     def exist?
       begin
-        Request.get(@client.url + path)
+        CoachClient::Request.get(@client.url + path)
         true
       rescue RestClient::ResourceNotFound
         false

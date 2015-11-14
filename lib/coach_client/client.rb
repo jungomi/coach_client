@@ -8,7 +8,8 @@ module CoachClient
 
     def authenticated?(username, password)
       begin
-        AuthenticatedRequest.get("#{@url}authenticateduser/", username, password)
+        CoachClient::AuthenticatedRequest.get("#{@url}authenticateduser/",
+                                              username, password)
         true
       rescue RestClient::Exception
         false
@@ -16,7 +17,7 @@ module CoachClient
     end
 
     def get_user(username)
-      user = User.new(self, username)
+      user = CoachClient::User.new(self, username)
       begin
         user.update
       rescue RestClient::Exception
