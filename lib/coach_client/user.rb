@@ -25,7 +25,7 @@ module CoachClient
       @password = info[:password]
       @realname = info[:realname]
       @email = info[:email]
-      @publicvisible = info[:publicvisible] || 2
+      @publicvisible = info[:publicvisible]
     end
 
     def update
