@@ -36,7 +36,7 @@ module CoachClient
                    unless @client.authenticated?(@username, @password)
                      raise "Unauthorized"
                    end
-                   CoachClient::AuthenticatedRequest.put(@username,
+                   CoachClient::AuthenticatedRequest.put(url, @username,
                                                          @password, payload,
                                                          content_type: :xml)
                  else
