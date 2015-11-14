@@ -88,7 +88,7 @@ module CoachClient
     end
 
     def url
-      "#{@client.url}users/#{@username}"
+      @client.url + self.class.path + @username
     end
 
     def to_h
