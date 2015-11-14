@@ -4,6 +4,21 @@ module CoachClient
     attr_accessor :client, :password, :realname, :email, :publicvisible,
       :newpassword
 
+    def self.path
+      'users/'
+    end
+
+    def self.list(client, size=20, start=0)
+      response = CoachClient::Request.get(client.url + path,
+                                          params: { start: start, size: size })
+      userlist  = []
+      response.to_h[:users].each do |u|
+        user = self.new(client, u[:username])
+        userlist << user if !block_given? || yield(user)
+      end
+      userlist
+    end
+
     def initialize(client, username, info={})
       @client = client
       @username = username
