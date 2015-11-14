@@ -4,9 +4,13 @@ module CoachClient
     attr_accessor :client, :password, :realname, :email, :publicvisible,
       :newpassword
 
-    def initialize(client, username)
+    def initialize(client, username, info={})
       @client = client
       @username = username
+      @password = info[:password]
+      @realname = info[:realname]
+      @email = info[:email]
+      @publicvisible = info[:publicvisible] || 2
     end
 
     def update
@@ -29,7 +33,7 @@ module CoachClient
       url = @client.url + path
       vals = self.to_h
       vals.delete(:username)
-      vals.delete_if { |_k, v| v.nil? }
+      vals.delete_if { |_k, v| v.nil? || v.to_s.empty? }
       vals[:password] = vals.delete(:newpassword) if vals[:newpassword]
       payload = Gyoku.xml(user: vals)
       response = if exist?
