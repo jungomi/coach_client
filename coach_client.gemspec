@@ -6,7 +6,7 @@ require 'coach_client/version'
 Gem::Specification.new do |spec|
   spec.name          = "coach_client"
   spec.version       = CoachClient::VERSION
-  spec.authors       = ["Michael Jungo"]
+  spec.authors       = ["Michael Jungo", "Amanda Karavolia", "Andrea Liechti", "Jocelyn Thode", "Simon Brulhart"]
   spec.email         = ["michael.jungo@unifr.ch"]
 
   spec.summary       = %q{A wrapper around the CyberCoach API of unifr}
