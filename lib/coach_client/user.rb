@@ -101,7 +101,7 @@ module CoachClient
     end
 
     def to_s
-      username.to_s
+      @username.to_s
     end
   end
 end
