@@ -16,6 +16,15 @@ module CoachClient
       end
     end
 
+    def get_sport(sportname)
+      sport = CoachClient::sport.new(self, sportname)
+      begin
+        sport.update
+      rescue RestClient::Exception
+        raise "Sport not found"
+      end
+    end
+
     def get_user(username)
       user = CoachClient::User.new(self, username)
       begin
