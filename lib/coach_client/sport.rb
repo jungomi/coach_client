@@ -7,6 +7,22 @@ module CoachClient
       'sports/'
     end
 
+    def self.total(client)
+      response = CoachClient::Request.get(client.url + path,
+                                          params: { size: 0 })
+      response.to_h[:available]
+    end
+
+    def self.list(client)
+      sportlist  = []
+      response = CoachClient::Request.get(client.url + path)
+      response.to_h[:sports].each do |s|
+        sport = self.new(client, s[:name])
+        sportlist << sport if !block_given? || yield(sport)
+      end
+      sportlist
+    end
+
     def initialize(client, sport)
       @client = client
       @sport = sport.downcase.to_sym
