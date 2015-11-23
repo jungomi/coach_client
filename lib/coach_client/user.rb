@@ -1,5 +1,7 @@
 module CoachClient
   class User
+    LIST_ALL_SIZE = 1000
+
     attr_reader :username
     attr_accessor :client, :password, :realname, :email, :publicvisible,
       :newpassword
@@ -8,13 +10,29 @@ module CoachClient
       'users/'
     end
 
-    def self.list(client, size=20, start=0)
+    def self.total(client)
       response = CoachClient::Request.get(client.url + path,
-                                          params: { start: start, size: size })
+                                          params: { size: 0 })
+      response.to_h[:available]
+    end
+
+    def self.list(client, size: 20, start: 0, all: false)
       userlist  = []
-      response.to_h[:users].each do |u|
-        user = self.new(client, u[:username])
-        userlist << user if !block_given? || yield(user)
+      if all
+        total = self.total(client)
+        start = 0
+        size = LIST_ALL_SIZE
+      end
+      loop do
+        response = CoachClient::Request.get(client.url + path,
+                                            params: { start: start, size: size })
+        response.to_h[:users].each do |u|
+          user = self.new(client, u[:username])
+          userlist << user if !block_given? || yield(user)
+        end
+        break unless all
+        start += size
+        break if start >= total
       end
       userlist
     end
