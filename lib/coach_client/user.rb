@@ -2,7 +2,7 @@ module CoachClient
   class User
     LIST_ALL_SIZE = 1000
 
-    attr_reader :username
+    attr_reader :username, :datecreated
     attr_accessor :client, :password, :realname, :email, :publicvisible,
       :newpassword
 
@@ -58,6 +58,7 @@ module CoachClient
       @realname = response[:realname]
       @email = response[:email]
       @publicvisible = response[:publicvisible]
+      @datecreated = response[:datecreated]
       self
     end
 
