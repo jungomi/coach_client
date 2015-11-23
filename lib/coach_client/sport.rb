@@ -1,7 +1,7 @@
 module CoachClient
   class Sport
-    attr_reader :sport
-    attr_accessor :client, :id, :name, :description
+    attr_reader :sport, :id, :name, :description
+    attr_accessor :client
 
     def self.path
       'sports/'
