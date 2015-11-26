@@ -56,8 +56,6 @@ module CoachClient
       unless response.code == 200 || response.code == 201
         raise "Could not save subscription"
       end
-      @password = vals[:password]
-      @newpassword = nil
       self
     end
 
@@ -87,7 +85,7 @@ module CoachClient
       instance_variables.each do |var|
         next if var.to_s == '@client'
         value = instance_variable_get(var)
-        hash[var.to_s.delete('@').to_sym] = if value.respond_to?(:to_h)
+        hash[var.to_s.delete('@').to_sym] = if value && value.respond_to?(:to_h)
                                               value.to_h
                                             else
                                               value
