@@ -1,6 +1,6 @@
 module CoachClient
   class Subscription
-    attr_reader :id, :datesubscribed
+    attr_reader :id, :datesubscribed, :entries
     attr_accessor :client, :sport, :publicvisible
 
     def initialize(client, sport, info={})
@@ -27,7 +27,7 @@ module CoachClient
       instance_variables.each do |var|
         next if var.to_s == '@client'
         value = instance_variable_get(var)
-        hash[var.to_s.delete('@').to_sym] = if value && value.respond_to?(:to_h)
+        hash[var.to_s.delete('@').to_sym] = if value && value.respond_to?(:to_h) && !value.is_a?(Array)
                                               value.to_h
                                             else
                                               value
@@ -50,6 +50,12 @@ module CoachClient
       @id = response[:id]
       @datesubscribed = response[:datesubscribed]
       @publicvisible = response[:publicvisible]
+      @entries = []
+      response[:entries].each do |e|
+        tag = "entry#{@sport}"
+        id = e[tag.to_sym][:uri].match(/\/(\d+)\/\z/).captures.first
+        @entries << CoachClient::Entry.new(client, self, id: id)
+      end
       self
     end
 
