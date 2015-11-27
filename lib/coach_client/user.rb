@@ -2,7 +2,7 @@ module CoachClient
   class User
     LIST_ALL_SIZE = 1000
 
-    attr_reader :username, :datecreated
+    attr_reader :username, :datecreated, :partnerships, :subscriptions
     attr_accessor :client, :password, :realname, :email, :publicvisible,
       :newpassword
 
@@ -59,6 +59,16 @@ module CoachClient
       @email = response[:email]
       @publicvisible = response[:publicvisible]
       @datecreated = response[:datecreated]
+      @partnerships = []
+      response[:partnerships].each do |p|
+        users = CoachClient::Partnership.extractUsersFromURI(p[:uri])
+        @partnerships << CoachClient::Partnership.new(client, *users)
+      end
+      @subscriptions = []
+      response[:subscriptions].each do |s|
+        sport = s[:uri].match(/\/(\w+)\/\z/).captures.first
+        @subscriptions << CoachClient::UserSubscription.new(client, self, sport)
+      end
       self
     end
 

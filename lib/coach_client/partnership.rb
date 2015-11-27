@@ -2,7 +2,8 @@ module CoachClient
   class Partnership
     LIST_ALL_SIZE = 1000
 
-    attr_reader :id, :datecreated, :user1_confirmed, :user2_confirmed
+    attr_reader :id, :datecreated, :user1_confirmed, :user2_confirmed,
+      :subscriptions
     attr_accessor :client, :user1, :user2, :publicvisible
 
     def self.path
@@ -74,6 +75,12 @@ module CoachClient
       @publicvisible = response[:publicvisible]
       @user1_confirmed = response[:userconfirmed1]
       @user2_confirmed = response[:userconfirmed2]
+      @subscriptions = []
+      response[:subscriptions].each do |s|
+        sport = s[:uri].match(/\/(\w+)\/\z/).captures.first
+        @subscriptions << CoachClient::PartnershipSubscription.new(client, self,
+                                                                   sport)
+      end
       self
     end
 
