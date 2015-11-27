@@ -1,13 +1,18 @@
 module CoachClient
   class Entry
     attr_reader :id, :datecreated, :datemodified
-    attr_accessor :client, :publicvisible, :subscription
+    attr_accessor :client, :publicvisible, :subscription, :comment,
+      :entrydate, :entryduration, :entrylocation
 
-    def initialize(client, subscription, id=nil, info={})
+    def initialize(client, subscription, info={})
       @client = client
       @subscription = subscription
-      @id = id
+      @id = info[:id]
       @publicvisible = info[:publicvisible]
+      @comment = info[:comment]
+      @entrydate = info[:entrydate]
+      @entryduration = info[:entryduration]
+      @entrylocation = info[:entrylocation]
     end
 
     def update
