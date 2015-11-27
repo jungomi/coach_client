@@ -192,7 +192,7 @@ module CoachClient
       instance_variables.each do |var|
         next if var.to_s == '@client'
         value = instance_variable_get(var)
-        hash[var.to_s.delete('@').to_sym] = if value && value.respond_to?(:to_h)
+        hash[var.to_s.delete('@').to_sym] = if value && value.respond_to?(:to_h) && !value.is_a?(Array)
                                               value.to_h
                                             else
                                               value
