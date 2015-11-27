@@ -190,7 +190,7 @@ module CoachClient
     end
 
     def to_s
-      "#{@user1.username.to_s};#{@user2.username.to_s}"
+      "#{@user1.username};#{@user2.username}"
     end
 
     private
