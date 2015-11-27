@@ -9,7 +9,13 @@ module CoachClient
 
     def initialize(client, partnership, sport, info={})
       super(client, sport, info)
-      @partnership = partnership
+      @partnership = if partnership.is_a?(CoachClient::Partnership)
+                       partnership
+                     else
+                       uri = "partnerships/#{partnership}/"
+                       users = CoachClient::Partnership.extractUsersFromURI(uri)
+                       CoachClient::Partnership.new(client, *users)
+                     end
     end
 
     def update

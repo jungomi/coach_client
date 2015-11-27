@@ -9,6 +9,11 @@ module CoachClient
       'partnerships/'
     end
 
+    def self.extractUsersFromURI(uri)
+      match = uri.match(/partnerships\/(\w+);(\w+)\//)
+      match.captures
+    end
+
     def self.total(client)
       response = CoachClient::Request.get(client.url + path,
                                           params: { size: 0 })
@@ -194,11 +199,6 @@ module CoachClient
     end
 
     private
-
-    def self.extractUsersFromURI(uri)
-      match = uri.match(/partnerships\/(\w+);(\w+)\//)
-      match.captures
-    end
 
     def payload
       vals = self.to_h
