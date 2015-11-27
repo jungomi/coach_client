@@ -3,7 +3,7 @@ module CoachClient
     attr_reader :id, :datecreated, :datemodified
     attr_accessor :client, :publicvisible, :subscription
 
-    def initialize(client, subscription, id, info={})
+    def initialize(client, subscription, id=nil, info={})
       @client = client
       @subscription = subscription
       @id = id
@@ -26,13 +26,27 @@ module CoachClient
       self
     end
 
+    def create
+      unless @client.authenticated?(user.username, user.password)
+        raise "Unauthorized"
+      end
+      begin
+        response = CoachClient::AuthenticatedRequest.post(@subscription.url,
+                                                          user.username,
+                                                          user.password,
+                                                          payload,
+                                                          content_type: :xml)
+      rescue RestClient::Conflict
+        raise "Incomplete information"
+      end
+      unless response.code == 200 || response.code == 201
+        raise "Could not create entry"
+      end
+      self
+    end
+
     def save
-      raise "Entry not found" unless exist?
-      vals = self.to_h
-      vals.delete(:subscription)
-      vals.delete_if { |_k, v| v.nil? || v.to_s.empty? }
-      tag = "entry#{@subscription.sport}"
-      payload = Gyoku.xml(tag.to_sym => vals)
+      return create unless @id
       unless @client.authenticated?(user.username, user.password)
         raise "Unauthorized"
       end
@@ -44,7 +58,7 @@ module CoachClient
         raise "Incomplete information"
       end
       unless response.code == 200 || response.code == 201
-        raise "Could not save subscription"
+        raise "Could not save entry"
       end
       self
     end
@@ -71,6 +85,7 @@ module CoachClient
     end
 
     def exist?
+      return false unless @id
       begin
         CoachClient::AuthenticatedRequest.get(url, user.username, user.password)
         true
@@ -99,6 +114,14 @@ module CoachClient
 
     def to_s
       "#{@user1.username};#{@user2.username}"
+    end
+
+    def payload
+      vals = self.to_h
+      vals.delete(:subscription)
+      vals.delete_if { |_k, v| v.nil? || v.to_s.empty? }
+      tag = "entry#{@subscription.sport}"
+      Gyoku.xml(tag.to_sym => vals)
     end
   end
 end
