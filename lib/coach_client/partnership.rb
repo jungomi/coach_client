@@ -73,7 +73,10 @@ module CoachClient
     end
 
     def save
-      raise "Not operational" unless operational?
+      unless operational?
+        propose unless @user1_confirmed
+        return confirm
+      end
       user1 = @client.authenticated?(@user1.username, @user1.password)
       user2 = @client.authenticated?(@user2.username, @user2.password) unless user1
       raise "Unauthorized" unless user1 || user2
