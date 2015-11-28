@@ -17,7 +17,7 @@ module CoachClient
     end
 
     def get_sport(sportname)
-      sport = CoachClient::sport.new(self, sportname)
+      sport = CoachClient::Sport.new(self, sportname)
       begin
         sport.update
       rescue RestClient::Exception
