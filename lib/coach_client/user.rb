@@ -1,10 +1,9 @@
 module CoachClient
-  class User
+  class User < Resource
     LIST_ALL_SIZE = 1000
 
     attr_reader :username, :datecreated, :partnerships, :subscriptions
-    attr_accessor :client, :password, :realname, :email, :publicvisible,
-      :newpassword
+    attr_accessor :password, :realname, :email, :publicvisible, :newpassword
 
     def self.path
       'users/'
@@ -38,7 +37,7 @@ module CoachClient
     end
 
     def initialize(client, username, info = {})
-      @client = client
+      super(client)
       @username = username
       @password = info[:password]
       @realname = info[:realname]
@@ -112,26 +111,8 @@ module CoachClient
       true
     end
 
-    def exist?
-      begin
-        CoachClient::Request.get(url)
-        true
-      rescue RestClient::ResourceNotFound
-        false
-      end
-    end
-
     def url
       @client.url + self.class.path + @username
-    end
-
-    def to_h
-      hash = {}
-      instance_variables.each do |var|
-        next if var.to_s == '@client'
-        hash[var.to_s.delete('@').to_sym] = instance_variable_get(var)
-      end
-      hash
     end
 
     def to_s

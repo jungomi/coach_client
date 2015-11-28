@@ -1,10 +1,10 @@
 module CoachClient
-  class Partnership
+  class Partnership < Resource
     LIST_ALL_SIZE = 1000
 
     attr_reader :id, :datecreated, :user1_confirmed, :user2_confirmed,
       :subscriptions
-    attr_accessor :client, :user1, :user2, :publicvisible
+    attr_accessor :user1, :user2, :publicvisible
 
     def self.path
       'partnerships/'
@@ -44,7 +44,7 @@ module CoachClient
     end
 
     def initialize(client, user1, user2, publicvisible: nil)
-      @client = client
+      super(client)
       @user1 = if user1.is_a?(CoachClient::User)
                  user1
                else
@@ -176,31 +176,8 @@ module CoachClient
       @user1_confirmed && @user2_confirmed
     end
 
-    def exist?
-      begin
-        CoachClient::Request.get(url)
-        true
-      rescue RestClient::ResourceNotFound
-        false
-      end
-    end
-
     def url
       "#{@client.url}#{self.class.path}#{@user1.username};#{@user2.username}"
-    end
-
-    def to_h
-      hash = {}
-      instance_variables.each do |var|
-        next if var.to_s == '@client'
-        value = instance_variable_get(var)
-        hash[var.to_s.delete('@').to_sym] = if value && value.respond_to?(:to_h) && !value.is_a?(Array)
-                                              value.to_h
-                                            else
-                                              value
-                                            end
-      end
-      hash
     end
 
     def to_s

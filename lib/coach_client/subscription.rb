@@ -1,39 +1,16 @@
 module CoachClient
-  class Subscription
+  class Subscription < Resource
     attr_reader :id, :datesubscribed, :entries
-    attr_accessor :client, :sport, :publicvisible
+    attr_accessor :sport, :publicvisible
 
     def initialize(client, sport, publicvisible: nil)
-      @client = client
+      super(client)
       @sport = if sport.is_a?(CoachClient::Sport)
                  sport
                else
                  CoachClient::Sport.new(client, sport)
                end
       @publicvisible = publicvisible
-    end
-
-    def exist?
-      begin
-        CoachClient::Request.get(url)
-        true
-      rescue RestClient::ResourceNotFound
-        false
-      end
-    end
-
-    def to_h
-      hash = {}
-      instance_variables.each do |var|
-        next if var.to_s == '@client'
-        value = instance_variable_get(var)
-        hash[var.to_s.delete('@').to_sym] = if value && value.respond_to?(:to_h) && !value.is_a?(Array)
-                                              value.to_h
-                                            else
-                                              value
-                                            end
-      end
-      hash
     end
 
     protected

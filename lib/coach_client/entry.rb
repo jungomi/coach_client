@@ -1,7 +1,7 @@
 module CoachClient
-  class Entry
+  class Entry < Resource
     attr_reader :id, :datecreated, :datemodified
-    attr_accessor :client, :publicvisible, :subscription, :comment,
+    attr_accessor :publicvisible, :subscription, :comment,
       :entrydate, :entryduration, :entrylocation
 
     def self.extractIdFromURI(uri)
@@ -10,7 +10,7 @@ module CoachClient
     end
 
     def initialize(client, subscription, info = {})
-      @client = client
+      super(client)
       @subscription = subscription
       @id = info[:id]
       @publicvisible = info[:publicvisible]
@@ -96,14 +96,12 @@ module CoachClient
       true
     end
 
-    def exist?
+    def exist?(username: nil, password: nil)
       return false unless @id
-      begin
-        CoachClient::Request.get(url, username: user.username,
-                                 password: user.password)
-        true
-      rescue RestClient::ResourceNotFound
-        false
+      if @client.authenticated?(user.username, user.password)
+        super(username: user.username, password: user.password)
+      else
+        super
       end
     end
 
@@ -111,23 +109,11 @@ module CoachClient
       "#{@subscription.url}/#{@id}"
     end
 
-    def to_h
-      hash = {}
-      instance_variables.each do |var|
-        next if var.to_s == '@client'
-        value = instance_variable_get(var)
-        hash[var.to_s.delete('@').to_sym] = if value && value.respond_to?(:to_h)
-                                              value.to_h
-                                            else
-                                              value
-                                            end
-      end
-      hash
+    def to_s
+      @id.to_s
     end
 
-    def to_s
-      "#{@user1.username};#{@user2.username}"
-    end
+    private
 
     def payload
       vals = self.to_h
