@@ -1,7 +1,6 @@
 require 'gyoku'
 require 'rest-client'
 
-require 'coach_client/authenticated_request'
 require 'coach_client/client'
 require 'coach_client/entry'
 require 'coach_client/partnership'

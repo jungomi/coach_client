@@ -18,8 +18,8 @@ module CoachClient
     def update
       raise "Entry not found" unless exist?
       response = if @client.authenticated?(user.username, user.password)
-                   CoachClient::AuthenticatedRequest.get(url, user.username,
-                                                         user.password)
+                   CoachClient::Request.get(url, username: user.username,
+                                            password: user.password)
                  else
                    CoachClient::Request.get(url)
                  end
@@ -36,11 +36,11 @@ module CoachClient
         raise "Unauthorized"
       end
       begin
-        response = CoachClient::AuthenticatedRequest.post(@subscription.url,
-                                                          user.username,
-                                                          user.password,
-                                                          payload,
-                                                          content_type: :xml)
+        response = CoachClient::Request.post(@subscription.url,
+                                             username: user.username,
+                                             password: user.password,
+                                             payload: payload,
+                                             content_type: :xml)
       rescue RestClient::Conflict
         raise "Incomplete information"
       end
@@ -56,9 +56,10 @@ module CoachClient
         raise "Unauthorized"
       end
       begin
-        response = CoachClient::AuthenticatedRequest.put(url, user.username,
-                                                         user.password, payload,
-                                                         content_type: :xml)
+        response = CoachClient::Request.put(url, username: user.username,
+                                            password: user.password,
+                                            payload: payload,
+                                            content_type: :xml)
       rescue RestClient::Conflict
         raise "Incomplete information"
       end
@@ -84,15 +85,16 @@ module CoachClient
     def delete
       raise "Unauthorized" unless @client.authenticated?(user.username,
                                                          user.password)
-      CoachClient::AuthenticatedRequest.delete(url, user.username,
-                                               user.password)
+      CoachClient::Request.delete(url, username: user.username,
+                                  password: user.password)
       true
     end
 
     def exist?
       return false unless @id
       begin
-        CoachClient::AuthenticatedRequest.get(url, user.username, user.password)
+        CoachClient::Request.get(url, username: user.username,
+                                 password: user.password)
         true
       rescue RestClient::ResourceNotFound
         false

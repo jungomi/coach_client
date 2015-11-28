@@ -41,8 +41,8 @@ module CoachClient
     def update(user)
       raise "Subscription not found" unless exist?
       response = if @client.authenticated?(user.username, user.password)
-                   CoachClient::AuthenticatedRequest.get(url, user.username,
-                                                         user.password)
+                   CoachClient::Request.get(url, username: user.username,
+                                            password: user.password)
                  else
                    CoachClient::Request.get(url)
                  end
@@ -51,10 +51,12 @@ module CoachClient
       @datesubscribed = response[:datesubscribed]
       @publicvisible = response[:publicvisible]
       @entries = []
-      response[:entries].each do |e|
-        tag = "entry#{@sport}"
-        id = e[tag.to_sym][:uri].match(/\/(\d+)\/\z/).captures.first
-        @entries << CoachClient::Entry.new(client, self, id: id)
+      unless response[:entries].nil?
+        response[:entries].each do |e|
+          tag = "entry#{@sport}"
+          id = e[tag.to_sym][:uri].match(/\/(\d+)\/\z/).captures.first
+          @entries << CoachClient::Entry.new(client, self, id: id)
+        end
       end
       self
     end
@@ -70,9 +72,10 @@ module CoachClient
         raise "Unauthorized"
       end
       begin
-        response = CoachClient::AuthenticatedRequest.put(url, user.username,
-                                                         user.password, payload,
-                                                         content_type: :xml)
+        response = CoachClient::Request.put(url, username: user.username,
+                                            password: user.password,
+                                            payload: payload,
+                                            content_type: :xml)
       rescue RestClient::Conflict
         raise "Incomplete information"
       end
@@ -85,8 +88,8 @@ module CoachClient
     def delete(user)
       raise "Unauthorized" unless @client.authenticated?(user.username,
                                                          user.password)
-      CoachClient::AuthenticatedRequest.delete(url, user.username,
-                                               user.password)
+      CoachClient::Request.delete(url, username: user.username,
+                                  password: user.password)
       true
     end
   end

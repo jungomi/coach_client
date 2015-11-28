@@ -49,8 +49,8 @@ module CoachClient
     def update
       raise "User not found" unless exist?
       response = if @client.authenticated?(@username, @password)
-                   CoachClient::AuthenticatedRequest.get(url, @username,
-                                                         @password)
+                   CoachClient::Request.get(url, username: @username,
+                                            password: @password)
                  else
                    CoachClient::Request.get(url)
                  end
@@ -60,14 +60,18 @@ module CoachClient
       @publicvisible = response[:publicvisible]
       @datecreated = response[:datecreated]
       @partnerships = []
-      response[:partnerships].each do |p|
-        users = CoachClient::Partnership.extractUsersFromURI(p[:uri])
-        @partnerships << CoachClient::Partnership.new(client, *users)
+      unless response[:partnerships].nil?
+        response[:partnerships].each do |p|
+          users = CoachClient::Partnership.extractUsersFromURI(p[:uri])
+          @partnerships << CoachClient::Partnership.new(client, *users)
+        end
       end
       @subscriptions = []
-      response[:subscriptions].each do |s|
-        sport = s[:uri].match(/\/(\w+)\/\z/).captures.first
-        @subscriptions << CoachClient::UserSubscription.new(client, self, sport)
+      unless response[:subscriptions].nil?
+        response[:subscriptions].each do |s|
+          sport = s[:uri].match(/\/(\w+)\/\z/).captures.first
+          @subscriptions << CoachClient::UserSubscription.new(client, self, sport)
+        end
       end
       self
     end
@@ -82,12 +86,14 @@ module CoachClient
                    unless @client.authenticated?(@username, @password)
                      raise "Unauthorized"
                    end
-                   CoachClient::AuthenticatedRequest.put(url, @username,
-                                                         @password, payload,
-                                                         content_type: :xml)
+                   CoachClient::Request.put(url, username: @username,
+                                            password: @password,
+                                            payload: payload,
+                                            content_type: :xml)
                  else
                    begin
-                     CoachClient::Request.put(url, payload, content_type: :xml)
+                     CoachClient::Request.put(url, payload: payload,
+                                              content_type: :xml)
                    rescue RestClient::Conflict
                      raise "Incomplete user information"
                    end
@@ -102,8 +108,7 @@ module CoachClient
 
     def delete
       raise "Unauthorized" unless @client.authenticated?(@username, @password)
-      CoachClient::AuthenticatedRequest.delete(url, @username,
-                                               @password)
+      CoachClient::Request.delete(url, username: @username, password: @password)
       true
     end
 

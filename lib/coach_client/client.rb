@@ -8,8 +8,8 @@ module CoachClient
 
     def authenticated?(username, password)
       begin
-        CoachClient::AuthenticatedRequest.get("#{@url}authenticateduser/",
-                                              username, password)
+        CoachClient::Request.get("#{@url}authenticateduser/",
+                                 username: username, password: password)
         true
       rescue RestClient::Exception
         false
