@@ -76,10 +76,12 @@ module CoachClient
       @user1_confirmed = response[:userconfirmed1]
       @user2_confirmed = response[:userconfirmed2]
       @subscriptions = []
-      response[:subscriptions].each do |s|
-        sport = s[:uri].match(/\/(\w+)\/\z/).captures.first
-        @subscriptions << CoachClient::PartnershipSubscription.new(client, self,
-                                                                   sport)
+      unless response[:subscriptions].nil?
+        response[:subscriptions].each do |s|
+          sport = s[:uri].match(/\/(\w+)\/\z/).captures.first
+          @subscriptions << CoachClient::PartnershipSubscription.new(client, self,
+                                                                     sport)
+        end
       end
       self
     end
