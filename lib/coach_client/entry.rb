@@ -52,6 +52,7 @@ module CoachClient
       unless response.code == 200 || response.code == 201
         raise "Could not create entry"
       end
+      @id = self.class.extractIdFromURI(response.header[:location])
       self
     end
 
