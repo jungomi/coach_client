@@ -37,7 +37,7 @@ module CoachClient
       userlist
     end
 
-    def initialize(client, username, info={})
+    def initialize(client, username, info = {})
       @client = client
       @username = username
       @password = info[:password]

@@ -7,8 +7,8 @@ module CoachClient
       'users/'
     end
 
-    def initialize(client, user, sport, info={})
-      super(client, sport, info)
+    def initialize(client, user, sport, publicvisible: nil)
+      super(client, sport, publicvisible: publicvisible)
       @user = if user.is_a?(CoachClient::User)
                 user
               else

@@ -3,14 +3,14 @@ module CoachClient
     attr_reader :id, :datesubscribed, :entries
     attr_accessor :client, :sport, :publicvisible
 
-    def initialize(client, sport, info={})
+    def initialize(client, sport, publicvisible: nil)
       @client = client
       @sport = if sport.is_a?(CoachClient::Sport)
                  sport
                else
                  CoachClient::Sport.new(client, sport)
                end
-      @publicvisible = info[:publicvisible]
+      @publicvisible = publicvisible
     end
 
     def exist?

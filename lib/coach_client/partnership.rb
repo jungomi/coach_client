@@ -43,7 +43,7 @@ module CoachClient
       list
     end
 
-    def initialize(client, user1, user2, info={})
+    def initialize(client, user1, user2, publicvisible: nil)
       @client = client
       @user1 = if user1.is_a?(CoachClient::User)
                  user1
@@ -55,7 +55,7 @@ module CoachClient
                else
                  CoachClient::User.new(client, user2)
                end
-      @publicvisible = info[:publicvisible]
+      @publicvisible = publicvisible
     end
 
     def update

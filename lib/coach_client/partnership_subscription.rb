@@ -7,8 +7,8 @@ module CoachClient
       'partnerships/'
     end
 
-    def initialize(client, partnership, sport, info={})
-      super(client, sport, info)
+    def initialize(client, partnership, sport, publicvisible: nil)
+      super(client, sport, publicvisible: publicvisible)
       @partnership = if partnership.is_a?(CoachClient::Partnership)
                        partnership
                      else

@@ -4,7 +4,7 @@ module CoachClient
     attr_accessor :client, :publicvisible, :subscription, :comment,
       :entrydate, :entryduration, :entrylocation
 
-    def initialize(client, subscription, info={})
+    def initialize(client, subscription, info = {})
       @client = client
       @subscription = subscription
       @id = info[:id]
