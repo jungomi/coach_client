@@ -4,6 +4,11 @@ module CoachClient
     attr_accessor :client, :publicvisible, :subscription, :comment,
       :entrydate, :entryduration, :entrylocation
 
+    def self.extractIdFromURI(uri)
+      match = uri.match(/\/(\d+)\/\z/)
+      match.captures.first
+    end
+
     def initialize(client, subscription, info = {})
       @client = client
       @subscription = subscription

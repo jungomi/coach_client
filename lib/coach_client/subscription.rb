@@ -54,7 +54,7 @@ module CoachClient
       unless response[:entries].nil?
         response[:entries].each do |e|
           tag = "entry#{@sport}"
-          id = e[tag.to_sym][:uri].match(/\/(\d+)\/\z/).captures.first
+          id = CoachClient::Entry.extractIdFromURI(e[tag.to_sym][:uri])
           @entries << CoachClient::Entry.new(client, self, id: id)
         end
       end
