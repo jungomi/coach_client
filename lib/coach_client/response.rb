@@ -1,8 +1,9 @@
 module CoachClient
   class Response
-    attr_reader :code
+    attr_reader :code, :header
 
-    def initialize(body, code)
+    def initialize(header, body, code)
+      @header = header
       @body = body
       @code = code
     end

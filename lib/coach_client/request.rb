@@ -8,7 +8,7 @@ module CoachClient
                                              user: username,
                                              password: password,
                                              headers: header)
-      Response.new(response, response.code)
+      Response.new(response.headers, response, response.code)
     end
 
     def self.put(url, username: nil, password: nil, payload:, **header)
@@ -17,7 +17,7 @@ module CoachClient
                                              user: username,
                                              password: password,
                                              payload: payload, headers: header)
-      Response.new(response, response.code)
+      Response.new(response.headers, response, response.code)
     end
 
     def self.post(url, username: nil, password: nil, payload:, **header)
@@ -26,7 +26,7 @@ module CoachClient
                                              user: username,
                                              password: password,
                                              payload: payload, headers: header)
-      Response.new(response, response.code)
+      Response.new(response.headers, response, response.code)
     end
 
     def self.delete(url, username: nil, password: nil, **header)
@@ -34,7 +34,7 @@ module CoachClient
                                              user: username,
                                              password: password,
                                              headers: header)
-      Response.new(response, response.code)
+      Response.new(response.headers, response, response.code)
     end
   end
 end
