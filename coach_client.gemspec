@@ -10,8 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["michael.jungo@unifr.ch"]
 
   spec.summary       = %q{A wrapper around the CyberCoach API of unifr}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/jungomi/coach_client"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
