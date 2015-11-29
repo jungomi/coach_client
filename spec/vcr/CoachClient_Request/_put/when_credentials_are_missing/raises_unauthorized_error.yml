@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: put
-    uri: http://user123:test123@diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/user123/cycling
+    uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/user123/cycling
     body:
       encoding: UTF-8
       string: "<subscription><publicvisible>2</publicvisible></subscription>"
@@ -19,11 +19,13 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 200
-      message: OK
+      code: 401
+      message: Unauthorized
     headers:
       Date:
       - Sun, 29 Nov 2015 15:43:49 GMT
+      Www-Authenticate:
+      - Basic
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -32,7 +34,7 @@ http_interactions:
       - Jetty(8.1.6.v20120903)
     body:
       encoding: UTF-8
-      string: '{"uri":"/CyberCoachServer/resources/users/user123/Cycling/","id":411,"datesubscribed":1446573341000,"publicvisible":2,"user":{"uri":"/CyberCoachServer/resources/users/user123/","username":"user123"},"sport":{"uri":"/CyberCoachServer/resources/sports/Cycling/","id":2,"name":"Cycling"}}'
+      string: Authentication failed. Permission not granted to access this resource.
     http_version: 
   recorded_at: Sun, 29 Nov 2015 15:50:18 GMT
 recorded_with: VCR 2.9.3

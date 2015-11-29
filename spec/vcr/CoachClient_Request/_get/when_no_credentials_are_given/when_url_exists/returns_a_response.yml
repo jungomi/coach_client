@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 29 Nov 2015 03:22:09 GMT
+      - Sun, 29 Nov 2015 15:43:48 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -28,7 +28,7 @@ http_interactions:
       - Jetty(8.1.6.v20120903)
     body:
       encoding: UTF-8
-      string: '{"uri":"/CyberCoachServer/resources/users/","links":[{"href":"/CyberCoachServer/resources/users/?start=5&size=5","description":"next"}],"start":0,"end":5,"available":20361,"type":"users","users":[{"uri":"/CyberCoachServer/resources/users/016qgolmptihkudvscayner8x5/","username":"016qgolmptihkudvscayner8x5"},{"uri":"/CyberCoachServer/resources/users/01pacfl9m8wodr/","username":"01pacfl9m8wodr"},{"uri":"/CyberCoachServer/resources/users/02g4rsohcxbunaye78f9q53djtlkm6wvzp1i/","username":"02g4rsohcxbunaye78f9q53djtlkm6wvzp1i"},{"uri":"/CyberCoachServer/resources/users/02kdhnoajgyfbu143678mvqst9liczxewp5r/","username":"02kdhnoajgyfbu143678mvqst9liczxewp5r"},{"uri":"/CyberCoachServer/resources/users/02odhcie63lx9nutyw7pkg5z1jsqm4r8fbva/","username":"02odhcie63lx9nutyw7pkg5z1jsqm4r8fbva"}]}'
+      string: '{"uri":"/CyberCoachServer/resources/users/","links":[{"href":"/CyberCoachServer/resources/users/?start=5&size=5","description":"next"}],"start":0,"end":5,"available":20364,"type":"users","users":[{"uri":"/CyberCoachServer/resources/users/016qgolmptihkudvscayner8x5/","username":"016qgolmptihkudvscayner8x5"},{"uri":"/CyberCoachServer/resources/users/01pacfl9m8wodr/","username":"01pacfl9m8wodr"},{"uri":"/CyberCoachServer/resources/users/02g4rsohcxbunaye78f9q53djtlkm6wvzp1i/","username":"02g4rsohcxbunaye78f9q53djtlkm6wvzp1i"},{"uri":"/CyberCoachServer/resources/users/02kdhnoajgyfbu143678mvqst9liczxewp5r/","username":"02kdhnoajgyfbu143678mvqst9liczxewp5r"},{"uri":"/CyberCoachServer/resources/users/02odhcie63lx9nutyw7pkg5z1jsqm4r8fbva/","username":"02odhcie63lx9nutyw7pkg5z1jsqm4r8fbva"}]}'
     http_version: 
-  recorded_at: Sun, 29 Nov 2015 03:28:34 GMT
+  recorded_at: Sun, 29 Nov 2015 15:50:18 GMT
 recorded_with: VCR 2.9.3
