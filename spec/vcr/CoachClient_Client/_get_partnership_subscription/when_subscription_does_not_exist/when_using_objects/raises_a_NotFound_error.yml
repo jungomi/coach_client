@@ -19,7 +19,7 @@ http_interactions:
       message: Unauthorized
     headers:
       Date:
-      - Sat, 28 Nov 2015 23:28:21 GMT
+      - Sun, 29 Nov 2015 03:22:09 GMT
       Www-Authenticate:
       - Basic
       Content-Type:
@@ -47,7 +47,7 @@ http_interactions:
         \                                               \n<br/>                                                \n<br/>
         \                                               \n<br/>                                                \n\n</body>\n</html>\n"
     http_version: 
-  recorded_at: Sat, 28 Nov 2015 23:34:45 GMT
+  recorded_at: Sun, 29 Nov 2015 03:28:33 GMT
 - request:
     method: get
     uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/user123;user321/boxing
@@ -67,7 +67,7 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Sat, 28 Nov 2015 23:28:21 GMT
+      - Sun, 29 Nov 2015 03:22:09 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -79,5 +79,5 @@ http_interactions:
       string: Resource not available. Either the partnership is not subscribed to
         this sport or you are not authorized to view this resource.
     http_version: 
-  recorded_at: Sat, 28 Nov 2015 23:34:45 GMT
+  recorded_at: Sun, 29 Nov 2015 03:28:34 GMT
 recorded_with: VCR 2.9.3

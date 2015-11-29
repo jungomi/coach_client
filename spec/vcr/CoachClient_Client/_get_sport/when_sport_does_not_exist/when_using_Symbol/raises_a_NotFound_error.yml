@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/user123;anotheruser
+    uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/sports/tennis
     body:
       encoding: US-ASCII
       string: ''
@@ -19,7 +19,7 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Sat, 28 Nov 2015 23:28:18 GMT
+      - Sun, 29 Nov 2015 03:22:04 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -28,7 +28,7 @@ http_interactions:
       - Jetty(8.1.6.v20120903)
     body:
       encoding: UTF-8
-      string: Requested partnership not found!
+      string: Sport "tennis" not found!
     http_version: 
-  recorded_at: Sat, 28 Nov 2015 23:34:42 GMT
+  recorded_at: Sun, 29 Nov 2015 03:28:29 GMT
 recorded_with: VCR 2.9.3
