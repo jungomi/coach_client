@@ -10,7 +10,7 @@ module CoachClient
       begin
         CoachClient::Request.get(url, username: username, password: password)
         true
-      rescue RestClient::ResourceNotFound
+      rescue CoachClient::NotFound
         false
       end
     end
