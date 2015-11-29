@@ -71,14 +71,14 @@ describe CoachClient::Client do
       context "when using String" do
         let(:sport) { 'tennis' }
 
-        it "raises an error" do
+        it "raises a NotFound error" do
           expect{ subject }.to raise_error(CoachClient::NotFound)
         end
       end
       context "when using Symbol" do
         let(:sport) { :tennis }
 
-        it "raises an error" do
+        it "raises a NotFound error" do
           expect{ subject }.to raise_error(CoachClient::NotFound)
         end
       end
@@ -100,7 +100,7 @@ describe CoachClient::Client do
     context "when user does not exist" do
       let(:username) { 'nonexistinguser' }
 
-      it "raises an error" do
+      it "raises a NotFound error" do
         expect{ subject }.to raise_error(CoachClient::NotFound)
       end
     end
@@ -138,7 +138,7 @@ describe CoachClient::Client do
         let(:user1) { 'user123' }
         let(:user2) { 'anotheruser' }
 
-        it "raises an error" do
+        it "raises a NotFound error" do
           expect{ subject }.to raise_error(CoachClient::NotFound)
         end
       end
@@ -147,7 +147,7 @@ describe CoachClient::Client do
         let(:user1) { CoachClient::User.new(@client, 'user123') }
         let(:user2) { CoachClient::User.new(@client, 'anotheruser') }
 
-        it "raises an error" do
+        it "raises a NotFound error" do
           expect{ subject }.to raise_error(CoachClient::NotFound)
         end
       end
@@ -186,7 +186,7 @@ describe CoachClient::Client do
         let(:user) { 'user321' }
         let(:sport) { 'running' }
 
-        it "raises an error" do
+        it "raises a NotFound error" do
           expect{ subject }.to raise_error(CoachClient::NotFound)
         end
       end
@@ -195,7 +195,7 @@ describe CoachClient::Client do
         let(:user) { CoachClient::User.new(@client, 'user321') }
         let(:sport) {  CoachClient::Sport.new(@client, 'running') }
 
-        it "raises an error" do
+        it "raises a NotFound error" do
           expect{ subject }.to raise_error(CoachClient::NotFound)
         end
       end
@@ -239,7 +239,7 @@ describe CoachClient::Client do
         let(:user2) { 'user321' }
         let(:sport) { 'boxing' }
 
-        it "raises an error" do
+        it "raises a NotFound error" do
           expect{ subject }.to raise_error(CoachClient::NotFound)
         end
       end
@@ -249,7 +249,7 @@ describe CoachClient::Client do
         let(:user2) { CoachClient::User.new(@client, 'user321') }
         let(:sport) { CoachClient::Sport.new(@client, 'boxing') }
 
-        it "raises an error" do
+        it "raises a NotFound error" do
           expect{ subject }.to raise_error(CoachClient::NotFound)
         end
       end
