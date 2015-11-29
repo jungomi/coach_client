@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: http://user123:test123@diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/user123
+    body:
+      encoding: UTF-8
+      string: "<user><publicvisible>1</publicvisible></user>"
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '45'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 29 Nov 2015 03:22:09 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/users/user123/","links":[{"href":"/CyberCoachServer/resources/users/user123/?start=5&size=5","description":"next"}],"username":"user123","password":"*","realname":"User
+        1233","email":"user123@yopmail.com","datecreated":1444686403000,"publicvisible":1,"partnerships":[{"uri":"/CyberCoachServer/resources/partnerships/user123;newuser26/","id":41},{"uri":"/CyberCoachServer/resources/partnerships/newuser28;user123/","id":42},{"uri":"/CyberCoachServer/resources/partnerships/newuser29;user123/","id":43},{"uri":"/CyberCoachServer/resources/partnerships/user123;newuser22/","id":159},{"uri":"/CyberCoachServer/resources/partnerships/user123;newuser31/","id":9346}],"subscriptions":[{"uri":"/CyberCoachServer/resources/users/user123/Boxing/","id":410},{"uri":"/CyberCoachServer/resources/users/user123/Cycling/","id":411},{"uri":"/CyberCoachServer/resources/users/user123/Soccer/","id":412},{"uri":"/CyberCoachServer/resources/users/user123/Running/","id":825}]}'
+    http_version: 
+  recorded_at: Sun, 29 Nov 2015 03:28:34 GMT
+recorded_with: VCR 2.9.3

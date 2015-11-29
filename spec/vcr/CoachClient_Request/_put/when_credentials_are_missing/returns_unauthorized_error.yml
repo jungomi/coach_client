@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/user123
+    body:
+      encoding: UTF-8
+      string: "<user><publicvisible>1</publicvisible></user>"
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '45'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Sun, 29 Nov 2015 03:22:10 GMT
+      Www-Authenticate:
+      - Basic
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: Authorization failed to modify UserEntity "user123".
+    http_version: 
+  recorded_at: Sun, 29 Nov 2015 03:28:35 GMT
+recorded_with: VCR 2.9.3
