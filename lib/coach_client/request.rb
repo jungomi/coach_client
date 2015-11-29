@@ -14,7 +14,7 @@ module CoachClient
       rescue RestClient::Unauthorized => e
         raise CoachClient::Unauthorized, e.message
       end
-      Response.new(response.headers, response, response.code)
+      CoachClient::Response.new(response.headers, response.body, response.code)
     end
 
     def self.put(url, username: nil, password: nil, payload:, **header)
@@ -30,7 +30,7 @@ module CoachClient
       rescue RestClient::Unauthorized => e
         raise CoachClient::Unauthorized, e.message
       end
-      Response.new(response.headers, response, response.code)
+      CoachClient::Response.new(response.headers, response.body, response.code)
     end
 
     def self.post(url, username: nil, password: nil, payload:, **header)
@@ -46,7 +46,7 @@ module CoachClient
       rescue RestClient::Unauthorized => e
         raise CoachClient::Unauthorized, e.message
       end
-      Response.new(response.headers, response, response.code)
+      CoachClient::Response.new(response.headers, response.body, response.code)
     end
 
     def self.delete(url, username: nil, password: nil, **header)
@@ -60,7 +60,7 @@ module CoachClient
       rescue RestClient::Unauthorized => e
         raise CoachClient::Unauthorized, e.message
       end
-      Response.new(response.headers, response, response.code)
+      CoachClient::Response.new(response.headers, response.body, response.code)
     end
   end
 end

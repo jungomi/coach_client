@@ -4,7 +4,7 @@ module CoachClient
     attr_accessor :publicvisible, :subscription, :comment,
       :entrydate, :entryduration, :entrylocation
 
-    def self.extractIdFromURI(uri)
+    def self.extract_id_from_uri(uri)
       match = uri.match(/\/(\d+)\/\z/)
       match.captures.first
     end
@@ -21,7 +21,7 @@ module CoachClient
     end
 
     def update
-      raise CoachClient::NotFound, "Entry not found" unless exist?
+      raise CoachClient::NotFound, 'Entry not found' unless exist?
       response = if @client.authenticated?(user.username, user.password)
                    CoachClient::Request.get(url, username: user.username,
                                             password: user.password)
@@ -38,7 +38,7 @@ module CoachClient
 
     def create
       unless @client.authenticated?(user.username, user.password)
-        raise CoachClient::Unauthorized.new(user), "Unauthorized"
+        raise CoachClient::Unauthorized.new(user), 'Unauthorized'
       end
       begin
         response = CoachClient::Request.post(@subscription.url,
@@ -47,19 +47,19 @@ module CoachClient
                                              payload: payload,
                                              content_type: :xml)
       rescue RestClient::Conflict
-        raise CoachClient::IncompleteInformation.new(self), "Incomplete information"
+        raise CoachClient::IncompleteInformation.new(self), 'Incomplete information'
       end
       unless response.code == 200 || response.code == 201
-        raise CoachClient::NotSaved.new(self), "Could not create entry"
+        raise CoachClient::NotSaved.new(self), 'Could not create entry'
       end
-      @id = self.class.extractIdFromURI(response.header[:location])
+      @id = self.class.extract_id_from_uri(response.header[:location])
       self
     end
 
     def save
       return create unless @id
       unless @client.authenticated?(user.username, user.password)
-        raise CoachClient::Unauthorized.new(user), "Unauthorized"
+        raise CoachClient::Unauthorized.new(user), 'Unauthorized'
       end
       begin
         response = CoachClient::Request.put(url, username: user.username,
@@ -67,10 +67,10 @@ module CoachClient
                                             payload: payload,
                                             content_type: :xml)
       rescue RestClient::Conflict
-        raise CoachClient::IncompleteInformation.new(self), "Incomplete information"
+        raise CoachClient::IncompleteInformation.new(self), 'Incomplete information'
       end
       unless response.code == 200 || response.code == 201
-        raise CoachClient::NotSaved.new(self), "Could not save entry"
+        raise CoachClient::NotSaved.new(self), 'Could not save entry'
       end
       self
     end
@@ -90,7 +90,7 @@ module CoachClient
 
     def delete
       unless @client.authenticated?(user.username, user.password)
-        raise CoachClient::Unauthorized.new(user), "Unauthorized"
+        raise CoachClient::Unauthorized.new(user), 'Unauthorized'
       end
       CoachClient::Request.delete(url, username: user.username,
                                   password: user.password)

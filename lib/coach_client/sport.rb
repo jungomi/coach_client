@@ -28,7 +28,7 @@ module CoachClient
     end
 
     def update
-      raise CoachClient::NotFound, "Sport not found" unless exist?
+      raise CoachClient::NotFound, 'Sport not found' unless exist?
       response = CoachClient::Request.get(url)
       response = response.to_h
       @id = response[:id]
