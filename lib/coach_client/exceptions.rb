@@ -1,7 +1,9 @@
 module CoachClient
-  class NotFound < StandardError; end
+  class Exception < StandardError; end
 
-  class NotSaved < StandardError
+  class NotFound < Exception; end
+
+  class NotSaved < Exception
     attr_reader :resource
 
     def initialize(resource)
@@ -9,7 +11,7 @@ module CoachClient
     end
   end
 
-  class NotConfirmed < StandardError
+  class NotConfirmed < Exception
     attr_reader :partnership
 
     def initialize(partnership)
@@ -17,7 +19,7 @@ module CoachClient
     end
   end
 
-  class NotProposed < StandardError
+  class NotProposed < Exception
     attr_reader :partnership
 
     def initialize(partnership)
@@ -25,7 +27,7 @@ module CoachClient
     end
   end
 
-  class Unauthorized < StandardError
+  class Unauthorized < Exception
     attr_reader :user
 
     def initialize(user = nil)
@@ -33,7 +35,7 @@ module CoachClient
     end
   end
 
-  class IncompleteInformation < StandardError
+  class IncompleteInformation < Exception
     attr_reader :resource
 
     def initialize(resource)
