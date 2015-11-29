@@ -13,7 +13,7 @@ module CoachClient
                        partnership
                      else
                        uri = "partnerships/#{partnership}/"
-                       users = CoachClient::Partnership.extractUsersFromURI(uri)
+                       users = CoachClient::Partnership.extract_users_from_uri(uri)
                        CoachClient::Partnership.new(client, *users)
                      end
     end

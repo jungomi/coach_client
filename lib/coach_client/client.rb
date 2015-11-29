@@ -21,7 +21,7 @@ module CoachClient
       begin
         sport.update
       rescue RestClient::Exception
-        raise "Sport not found"
+        raise 'Sport not found'
       end
     end
 
@@ -30,7 +30,7 @@ module CoachClient
       begin
         user.update
       rescue RestClient::Exception
-        raise "User not found"
+        raise 'User not found'
       end
     end
 
@@ -39,7 +39,7 @@ module CoachClient
       begin
         partnership.update
       rescue RestClient::Exception
-        raise "Partnership not found"
+        raise 'Partnership not found'
       end
     end
 
@@ -48,7 +48,7 @@ module CoachClient
       begin
         subscription.update
       rescue RestClient::Exception
-        raise "Subscription not found"
+        raise 'Subscription not found'
       end
     end
 
@@ -58,7 +58,7 @@ module CoachClient
       begin
         subscription.update
       rescue RestClient::Exception
-        raise "Subscription not found"
+        raise 'Subscription not found'
       end
     end
   end
