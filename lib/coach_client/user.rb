@@ -46,7 +46,7 @@ module CoachClient
     end
 
     def update
-      raise "User not found" unless exist?
+      raise 'User not found' unless exist?
       response = if @client.authenticated?(@username, @password)
                    CoachClient::Request.get(url, username: @username,
                                             password: @password)
@@ -61,7 +61,7 @@ module CoachClient
       @partnerships = []
       unless response[:partnerships].nil?
         response[:partnerships].each do |p|
-          users = CoachClient::Partnership.extractUsersFromURI(p[:uri])
+          users = CoachClient::Partnership.extract_users_from_uri(p[:uri])
           @partnerships << CoachClient::Partnership.new(client, *users)
         end
       end
@@ -83,7 +83,7 @@ module CoachClient
       payload = Gyoku.xml(user: vals)
       response = if exist?
                    unless @client.authenticated?(@username, @password)
-                     raise "Unauthorized"
+                     raise 'Unauthorized'
                    end
                    CoachClient::Request.put(url, username: @username,
                                             password: @password,
@@ -94,11 +94,11 @@ module CoachClient
                      CoachClient::Request.put(url, payload: payload,
                                               content_type: :xml)
                    rescue RestClient::Conflict
-                     raise "Incomplete user information"
+                     raise 'Incomplete user information'
                    end
                  end
       unless response.code == 200 || response.code == 201
-        raise "Could not save user"
+        raise 'Could not save user'
       end
       @password = vals[:password]
       @newpassword = nil
@@ -106,7 +106,7 @@ module CoachClient
     end
 
     def delete
-      raise "Unauthorized" unless @client.authenticated?(@username, @password)
+      raise 'Unauthorized' unless @client.authenticated?(@username, @password)
       CoachClient::Request.delete(url, username: @username, password: @password)
       true
     end
