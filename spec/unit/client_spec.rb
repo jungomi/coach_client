@@ -72,14 +72,14 @@ describe CoachClient::Client do
         let(:sport) { 'tennis' }
 
         it "raises an error" do
-          expect{ subject }.to raise_error(RuntimeError)
+          expect{ subject }.to raise_error(CoachClient::NotFound)
         end
       end
       context "when using Symbol" do
         let(:sport) { :tennis }
 
         it "raises an error" do
-          expect{ subject }.to raise_error(RuntimeError)
+          expect{ subject }.to raise_error(CoachClient::NotFound)
         end
       end
     end
@@ -101,7 +101,7 @@ describe CoachClient::Client do
       let(:username) { 'nonexistinguser' }
 
       it "raises an error" do
-        expect{ subject }.to raise_error(RuntimeError)
+        expect{ subject }.to raise_error(CoachClient::NotFound)
       end
     end
   end
@@ -139,7 +139,7 @@ describe CoachClient::Client do
         let(:user2) { 'anotheruser' }
 
         it "raises an error" do
-          expect{ subject }.to raise_error(RuntimeError)
+          expect{ subject }.to raise_error(CoachClient::NotFound)
         end
       end
 
@@ -148,7 +148,7 @@ describe CoachClient::Client do
         let(:user2) { CoachClient::User.new(@client, 'anotheruser') }
 
         it "raises an error" do
-          expect{ subject }.to raise_error(RuntimeError)
+          expect{ subject }.to raise_error(CoachClient::NotFound)
         end
       end
     end
@@ -187,7 +187,7 @@ describe CoachClient::Client do
         let(:sport) { 'running' }
 
         it "raises an error" do
-          expect{ subject }.to raise_error(RuntimeError)
+          expect{ subject }.to raise_error(CoachClient::NotFound)
         end
       end
 
@@ -196,7 +196,7 @@ describe CoachClient::Client do
         let(:sport) {  CoachClient::Sport.new(@client, 'running') }
 
         it "raises an error" do
-          expect{ subject }.to raise_error(RuntimeError)
+          expect{ subject }.to raise_error(CoachClient::NotFound)
         end
       end
     end
@@ -240,7 +240,7 @@ describe CoachClient::Client do
         let(:sport) { 'boxing' }
 
         it "raises an error" do
-          expect{ subject }.to raise_error(RuntimeError)
+          expect{ subject }.to raise_error(CoachClient::NotFound)
         end
       end
 
@@ -250,7 +250,7 @@ describe CoachClient::Client do
         let(:sport) { CoachClient::Sport.new(@client, 'boxing') }
 
         it "raises an error" do
-          expect{ subject }.to raise_error(RuntimeError)
+          expect{ subject }.to raise_error(CoachClient::NotFound)
         end
       end
     end

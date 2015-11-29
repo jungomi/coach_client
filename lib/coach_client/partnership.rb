@@ -59,7 +59,7 @@ module CoachClient
     end
 
     def update
-      raise "Partnership not found" unless exist?
+      raise CoachClient::NotFound.new(self), "Partnership not found" unless exist?
       response = if @client.authenticated?(@user1.username, @user1.password)
                    CoachClient::Request.get(url, username: @user1.username,
                                             password: @user1.password)
@@ -93,7 +93,9 @@ module CoachClient
       end
       user1 = @client.authenticated?(@user1.username, @user1.password)
       user2 = @client.authenticated?(@user2.username, @user2.password) unless user1
-      raise "Unauthorized" unless user1 || user2
+      unless user1 || user2
+        raise CoachClient::Unauthorized.new(@user2), "Unauthorized"
+      end
       begin
         response = if user1
                      CoachClient::Request.put(url, username: @user1.username,
@@ -107,17 +109,17 @@ module CoachClient
                                               content_type: :xml)
                    end
       rescue RestClient::Conflict
-        raise "Incomplete information"
+        raise CoachClient::IncompleteInformation.new(self), "Incomplete information"
       end
       unless response.code == 200 || response.code == 201
-        raise "Could not save partnership"
+        raise CoachClient::NotSaved.new(self), "Could not save partnership"
       end
       self
     end
 
     def propose
       unless @client.authenticated?(@user1.username, @user1.password)
-        raise "Unauthorized"
+        raise CoachClient::Unauthorized.new(@user1), "Unauthorized"
       end
       begin
         response = CoachClient::Request.put(url, username: @user1.username,
@@ -125,10 +127,10 @@ module CoachClient
                                             payload: payload,
                                             content_type: :xml)
       rescue RestClient::Conflict
-        raise "Incomplete information"
+        raise CoachClient::IncompleteInformation.new(self), "Incomplete information"
       end
       unless response.code == 200 || response.code == 201
-        raise "Could not propose partnership"
+        raise CoachClient::NotProposed.new(self), "Could not propose partnership"
       end
       @user1_confirmed = true
       self
@@ -136,7 +138,7 @@ module CoachClient
 
     def confirm
       unless @client.authenticated?(@user2.username, @user2.password)
-        raise "Unauthorized"
+        raise CoachClient::Unauthorized.new(@user2), "Unauthorized"
       end
       begin
         response = CoachClient::Request.put(url, username: @user2.username,
@@ -144,18 +146,19 @@ module CoachClient
                                             payload: payload,
                                             content_type: :xml)
       rescue RestClient::Conflict
-        raise "Incomplete information"
+        raise CoachClient::IncompleteInformation.new(self), "Incomplete information"
       end
       unless response.code == 200 || response.code == 201
-        raise "Could not confirm partnership"
+        raise CoachClient::NotConfirmed.new(self), "Could not confirm partnership"
       end
       @user2_confirmed = true
       self
     end
 
     def invalidate
-      raise "Unauthorized" unless @client.authenticated?(@user2.username,
-                                                         @user2.password)
+      unless @client.authenticated?(@user2.username, @user2.password)
+          raise CoachClient::Unauthorized.new(@user2), "Unauthorized"
+      end
       CoachClient::Request.delete(url, username: @user2.username,
                                   password: @user2.password)
       @user2_confirmed = false
@@ -164,8 +167,9 @@ module CoachClient
 
     def delete
       invalidate if operational?
-      raise "Unauthorized" unless @client.authenticated?(@user1.username,
-                                                         @user1.password)
+      unless @client.authenticated?(@user1.username, @user1.password)
+        raise CoachClient::Unauthorized.new(@user1), "Unauthorized"
+      end
       CoachClient::Request.delete(url, username: @user1.username,
                                   password: @user1.password)
       @user1_confirmed = false

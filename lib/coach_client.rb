@@ -2,6 +2,7 @@ require 'gyoku'
 require 'rest-client'
 
 require 'coach_client/client'
+require 'coach_client/exceptions.rb'
 require 'coach_client/resource'
 require 'coach_client/entry'
 require 'coach_client/partnership'
