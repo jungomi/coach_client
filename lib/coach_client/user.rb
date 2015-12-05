@@ -62,7 +62,8 @@ module CoachClient
       unless response[:partnerships].nil?
         response[:partnerships].each do |p|
           users = CoachClient::Partnership.extract_users_from_uri(p[:uri])
-          @partnerships << CoachClient::Partnership.new(client, *users)
+          users.reject! { |username| username == @username }
+          @partnerships << CoachClient::Partnership.new(client, self, users.first)
         end
       end
       @subscriptions = []
