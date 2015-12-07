@@ -1,0 +1,34 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/?size=20&start=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Dec 2015 15:07:33 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/users/","links":[{"href":"/CyberCoachServer/resources/users/?start=20&size=20","description":"next"}],"start":0,"end":20,"available":23495,"type":"users","users":[{"uri":"/CyberCoachServer/resources/users/016qgolmptihkudvscayner8x5/","username":"016qgolmptihkudvscayner8x5"},{"uri":"/CyberCoachServer/resources/users/01h3ds6qgbuvm9xkct7j2ieynazw4orf58pl/","username":"01h3ds6qgbuvm9xkct7j2ieynazw4orf58pl"},{"uri":"/CyberCoachServer/resources/users/01j6di8ofa/","username":"01j6di8ofa"},{"uri":"/CyberCoachServer/resources/users/01nfkrmczxjbvysh/","username":"01nfkrmczxjbvysh"},{"uri":"/CyberCoachServer/resources/users/01pacfl9m8wodr/","username":"01pacfl9m8wodr"},{"uri":"/CyberCoachServer/resources/users/02734ioxgus1prhjy6cb/","username":"02734ioxgus1prhjy6cb"},{"uri":"/CyberCoachServer/resources/users/027luaoi1v/","username":"027luaoi1v"},{"uri":"/CyberCoachServer/resources/users/02g4rsohcxbunaye78f9q53djtlkm6wvzp1i/","username":"02g4rsohcxbunaye78f9q53djtlkm6wvzp1i"},{"uri":"/CyberCoachServer/resources/users/02kdhnoajgyfbu143678mvqst9liczxewp5r/","username":"02kdhnoajgyfbu143678mvqst9liczxewp5r"},{"uri":"/CyberCoachServer/resources/users/02m7nezxo14jht5f9qkvrpu/","username":"02m7nezxo14jht5f9qkvrpu"},{"uri":"/CyberCoachServer/resources/users/02odhcie63lx9nutyw7pkg5z1jsqm4r8fbva/","username":"02odhcie63lx9nutyw7pkg5z1jsqm4r8fbva"},{"uri":"/CyberCoachServer/resources/users/02pgqk7c5v3am8sl4fw9noj1hdrbt6uxeyiz/","username":"02pgqk7c5v3am8sl4fw9noj1hdrbt6uxeyiz"},{"uri":"/CyberCoachServer/resources/users/036sy1fqx47e9nwti8ugrlpha2movk5bdzjc/","username":"036sy1fqx47e9nwti8ugrlpha2movk5bdzjc"},{"uri":"/CyberCoachServer/resources/users/03m6ji8xktwqfusl71pg2zod4achy/","username":"03m6ji8xktwqfusl71pg2zod4achy"},{"uri":"/CyberCoachServer/resources/users/03midt2zrbw7ngvask8x9615ceqfujhlo4/","username":"03midt2zrbw7ngvask8x9615ceqfujhlo4"},{"uri":"/CyberCoachServer/resources/users/03nvjcfzg1dqmasl9uerip6t5bh42y8/","username":"03nvjcfzg1dqmasl9uerip6t5bh42y8"},{"uri":"/CyberCoachServer/resources/users/03p1nb9wocgsyamfuqehz584rv2jlidk76tx/","username":"03p1nb9wocgsyamfuqehz584rv2jlidk76tx"},{"uri":"/CyberCoachServer/resources/users/03unwxsf4i2hqtzd5e78rbj/","username":"03unwxsf4i2hqtzd5e78rbj"},{"uri":"/CyberCoachServer/resources/users/03x6c2bs4nywmg9th7ukoizjprdvaleq85f1/","username":"03x6c2bs4nywmg9th7ukoizjprdvaleq85f1"},{"uri":"/CyberCoachServer/resources/users/0439zyqud5k72l1b8ejawgsovtrh6cpnxmfi/","username":"0439zyqud5k72l1b8ejawgsovtrh6cpnxmfi"}]}'
+    http_version: 
+  recorded_at: Mon, 07 Dec 2015 15:14:57 GMT
+recorded_with: VCR 2.9.3
