@@ -1,0 +1,34 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/?size=20&start=2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Dec 2015 16:38:20 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/partnerships/","links":[{"href":"/CyberCoachServer/resources/partnerships/?start=22&size=20","description":"next"},{"href":"/CyberCoachServer/resources/partnerships/?start=0&size=20","description":"previous"}],"start":2,"end":22,"available":10734,"type":"partnerships","partnerships":[{"uri":"/CyberCoachServer/resources/partnerships/wc79sjbl3ptuxmed6yfq;tdhcymo827965p4irbgneu3sjvwfkaqz0l1x/","id":10785},{"uri":"/CyberCoachServer/resources/partnerships/m1yvnb5tgkuh4wf9a;9aj26wnv0zqgu4eyp3f8dmolrcts7/","id":10784},{"uri":"/CyberCoachServer/resources/partnerships/963lhy4euwvdban7x;9aj26wnv0zqgu4eyp3f8dmolrcts7/","id":10783},{"uri":"/CyberCoachServer/resources/partnerships/wc79sjbl3ptuxmed6yfq;04dy56tpslukimrhz3c12jfg9xb87an/","id":10781},{"uri":"/CyberCoachServer/resources/partnerships/2716pezk9cusdgxnj4amv8b0f5hqltoyw3ri;04dy56tpslukimrhz3c12jfg9xb87an/","id":10782},{"uri":"/CyberCoachServer/resources/partnerships/h7cba6zmr12xnleujs0i5;9aj26wnv0zqgu4eyp3f8dmolrcts7/","id":10780},{"uri":"/CyberCoachServer/resources/partnerships/2716pezk9cusdgxnj4amv8b0f5hqltoyw3ri;u58d1493nwzvym2xaq/","id":10779},{"uri":"/CyberCoachServer/resources/partnerships/wc79sjbl3ptuxmed6yfq;wvf6xu1oim75aytd382kjbgnqcphs/","id":10778},{"uri":"/CyberCoachServer/resources/partnerships/2716pezk9cusdgxnj4amv8b0f5hqltoyw3ri;wvf6xu1oim75aytd382kjbgnqcphs/","id":10777},{"uri":"/CyberCoachServer/resources/partnerships/h7cba6zmr12xnleujs0i5;tdhcymo827965p4irbgneu3sjvwfkaqz0l1x/","id":10776},{"uri":"/CyberCoachServer/resources/partnerships/wc79sjbl3ptuxmed6yfq;2716pezk9cusdgxnj4amv8b0f5hqltoyw3ri/","id":10775},{"uri":"/CyberCoachServer/resources/partnerships/zdty175ce9ufo4qx;v4rlhfedo90qsnuktji5gw386y17mb2apxzc/","id":10774},{"uri":"/CyberCoachServer/resources/partnerships/neg5yjov9cb1qfx30wa2i8l64k7tdmzhpusr;plrxf6vuo82nmizgqjc315wahtde9skyb074/","id":10772},{"uri":"/CyberCoachServer/resources/partnerships/7yx8vao0zwlnpq1dsjc54tm2k3ghiu9fe6rb;plrxf6vuo82nmizgqjc315wahtde9skyb074/","id":10773},{"uri":"/CyberCoachServer/resources/partnerships/zdty175ce9ufo4qx;af0elkvu5ncqdyhz948roxbs2g6ti3j7pwm/","id":10771},{"uri":"/CyberCoachServer/resources/partnerships/5sb64ou0wqz1lfphngtyxjamd9rv72ce8ik3;af0elkvu5ncqdyhz948roxbs2g6ti3j7pwm/","id":10770},{"uri":"/CyberCoachServer/resources/partnerships/5sb64ou0wqz1lfphngtyxjamd9rv72ce8ik3;plrxf6vuo82nmizgqjc315wahtde9skyb074/","id":10769},{"uri":"/CyberCoachServer/resources/partnerships/5sb64ou0wqz1lfphngtyxjamd9rv72ce8ik3;mc8g905nursjwyldxt7hvoiqpaez2314k6bf/","id":10767},{"uri":"/CyberCoachServer/resources/partnerships/70w3ifsdu5jl2byto9mnac6gevphqr814kxz;plrxf6vuo82nmizgqjc315wahtde9skyb074/","id":10768},{"uri":"/CyberCoachServer/resources/partnerships/neg5yjov9cb1qfx30wa2i8l64k7tdmzhpusr;v4rlhfedo90qsnuktji5gw386y17mb2apxzc/","id":10766}]}'
+    http_version: 
+  recorded_at: Mon, 07 Dec 2015 16:45:44 GMT
+recorded_with: VCR 2.9.3

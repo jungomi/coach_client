@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://partner2:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Dec 2015 18:33:01 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/users/partner2/","username":"partner2","password":"*","realname":"Partner
+        2","email":"partner@email.com","datecreated":1449507799393,"publicvisible":2}'
+    http_version: 
+  recorded_at: Mon, 07 Dec 2015 18:40:25 GMT
+- request:
+    method: put
+    uri: http://partner2:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/partner3;partner2
+    body:
+      encoding: UTF-8
+      string: "<partnership></partnership>"
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '27'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Dec 2015 18:33:01 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/partnerships/partner3;partner2/","id":10955,"userconfirmed1":true,"userconfirmed2":true,"datecreated":1449512205090,"publicvisible":2,"user1":{"uri":"/CyberCoachServer/resources/users/partner3/","username":"partner3"},"user2":{"uri":"/CyberCoachServer/resources/users/partner2/","username":"partner2"}}'
+    http_version: 
+  recorded_at: Mon, 07 Dec 2015 18:40:25 GMT
+recorded_with: VCR 2.9.3

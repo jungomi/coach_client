@@ -1,0 +1,97 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/partner1;partner3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Dec 2015 18:29:04 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/partnerships/partner3;partner1/","id":10956,"userconfirmed1":true,"userconfirmed2":false,"datecreated":1449512934831,"publicvisible":2,"user1":{"uri":"/CyberCoachServer/resources/users/partner3/","username":"partner3"},"user2":{"uri":"/CyberCoachServer/resources/users/partner1/","username":"partner1"}}'
+    http_version: 
+  recorded_at: Mon, 07 Dec 2015 18:36:28 GMT
+- request:
+    method: get
+    uri: http://partner1:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Dec 2015 18:29:04 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/users/partner1/","username":"partner1","password":"*","realname":"Partner
+        1","email":"partner@email.com","datecreated":1449507777103,"publicvisible":2}'
+    http_version: 
+  recorded_at: Mon, 07 Dec 2015 18:36:28 GMT
+- request:
+    method: get
+    uri: http://partner1:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/partner1;partner3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Dec 2015 18:29:05 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/partnerships/partner3;partner1/","id":10956,"userconfirmed1":true,"userconfirmed2":false,"datecreated":1449512934831,"publicvisible":2,"user1":{"uri":"/CyberCoachServer/resources/users/partner3/","username":"partner3"},"user2":{"uri":"/CyberCoachServer/resources/users/partner1/","username":"partner1"}}'
+    http_version: 
+  recorded_at: Mon, 07 Dec 2015 18:36:28 GMT
+recorded_with: VCR 2.9.3

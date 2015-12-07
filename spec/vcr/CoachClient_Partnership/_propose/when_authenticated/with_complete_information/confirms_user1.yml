@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://nopartner:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Dec 2015 18:33:00 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/users/nopartner/","username":"nopartner","password":"*","realname":"No
+        Partner","email":"nopartner@email.com","datecreated":1449507826276,"publicvisible":2}'
+    http_version: 
+  recorded_at: Mon, 07 Dec 2015 18:40:24 GMT
+- request:
+    method: put
+    uri: http://nopartner:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/nopartner;partner2
+    body:
+      encoding: UTF-8
+      string: "<partnership><publicvisible>2</publicvisible></partnership>"
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '59'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Mon, 07 Dec 2015 18:33:01 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/partnerships/nopartner;partner2/","id":10957,"userconfirmed1":true,"userconfirmed2":false,"datecreated":1449513181069,"publicvisible":2,"user1":{"uri":"/CyberCoachServer/resources/users/nopartner/","username":"nopartner"},"user2":{"uri":"/CyberCoachServer/resources/users/partner2/","username":"partner2"}}'
+    http_version: 
+  recorded_at: Mon, 07 Dec 2015 18:40:25 GMT
+recorded_with: VCR 2.9.3
