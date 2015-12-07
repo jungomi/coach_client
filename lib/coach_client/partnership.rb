@@ -162,16 +162,19 @@ module CoachClient
       CoachClient::Request.delete(url, username: @user2.username,
                                   password: @user2.password)
       @user2_confirmed = false
-      true
+      self
     end
 
     def delete
-      invalidate if operational?
-      unless @client.authenticated?(@user1.username, @user1.password)
-        raise CoachClient::Unauthorized.new(@user1), 'Unauthorized'
+      raise CoachClient::NotFound unless exist?
+      invalidate if user2_confirmed
+      if user1_confirmed
+        unless @client.authenticated?(@user1.username, @user1.password)
+          raise CoachClient::Unauthorized.new(@user1), 'Unauthorized'
+        end
+        CoachClient::Request.delete(url, username: @user1.username,
+                                    password: @user1.password)
       end
-      CoachClient::Request.delete(url, username: @user1.username,
-                                  password: @user1.password)
       @user1_confirmed = false
       true
     end
