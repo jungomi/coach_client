@@ -47,7 +47,7 @@ module CoachClient
 
     def update
       raise CoachClient::NotFound, 'User not found' unless exist?
-      response = if @client.authenticated?(@username, @password)
+      response = if authenticated?
                    CoachClient::Request.get(url, username: @username,
                                             password: @password)
                  else
@@ -83,7 +83,7 @@ module CoachClient
       vals[:password] = vals.delete(:newpassword) if vals[:newpassword]
       payload = Gyoku.xml(user: vals)
       response = if exist?
-                   unless @client.authenticated?(@username, @password)
+                   unless authenticated?
                      raise CoachClient::Unauthorized.new(self), 'Unauthorized'
                    end
                    CoachClient::Request.put(url, username: @username,
@@ -108,11 +108,16 @@ module CoachClient
     end
 
     def delete
-      unless @client.authenticated?(@username, @password)
+      raise CoachClient::NotFound unless exist?
+      unless authenticated?
         raise CoachClient::Unauthorized.new(self), 'Unauthorized'
       end
       CoachClient::Request.delete(url, username: @username, password: @password)
       true
+    end
+
+    def authenticated?
+      @client.authenticated?(@username, @password)
     end
 
     def url
