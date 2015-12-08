@@ -33,6 +33,10 @@ module CoachClient
       @datecreated = response[:datecreated]
       @datemodified = response[:datemodified]
       @publicvisible = response[:publicvisible]
+      @comment = response[:comment]
+      @entrydate = response[:entrydate]
+      @entryduration = response[:entryduration]
+      @entrylocation = response[:entrylocation]
       self
     end
 
@@ -89,6 +93,7 @@ module CoachClient
     end
 
     def delete
+      raise CoachClient::NotFound.new(self), 'Entry not found' unless exist?
       unless @client.authenticated?(user.username, user.password)
         raise CoachClient::Unauthorized.new(user), 'Unauthorized'
       end
