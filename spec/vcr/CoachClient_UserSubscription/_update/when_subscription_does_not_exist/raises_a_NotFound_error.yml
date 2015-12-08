@@ -1,0 +1,35 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/subscriber/cycling
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Tue, 08 Dec 2015 00:33:50 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: Resource not available. Either the user is not subscribed to this sport
+        or you are not authorized to view this resource.
+    http_version: 
+  recorded_at: Tue, 08 Dec 2015 00:41:16 GMT
+recorded_with: VCR 2.9.3

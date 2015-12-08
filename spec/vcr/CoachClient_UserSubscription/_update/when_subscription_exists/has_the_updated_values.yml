@@ -1,0 +1,96 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/subscriber/running
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 08 Dec 2015 00:33:50 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/users/subscriber/Running/","id":2282,"datesubscribed":1449534281186,"publicvisible":2,"user":{"uri":"/CyberCoachServer/resources/users/subscriber/","username":"subscriber"},"sport":{"uri":"/CyberCoachServer/resources/sports/Running/","id":1,"name":"Running"}}'
+    http_version: 
+  recorded_at: Tue, 08 Dec 2015 00:41:16 GMT
+- request:
+    method: get
+    uri: http://subscriber:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 08 Dec 2015 00:33:51 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/users/subscriber/","username":"subscriber","password":"*","realname":"Subscriber","email":"sub@scrib.er","datecreated":1449529350000,"publicvisible":2}'
+    http_version: 
+  recorded_at: Tue, 08 Dec 2015 00:41:16 GMT
+- request:
+    method: get
+    uri: http://subscriber:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/subscriber/running
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 08 Dec 2015 00:33:51 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/users/subscriber/Running/","id":2282,"datesubscribed":1449534281186,"publicvisible":2,"user":{"uri":"/CyberCoachServer/resources/users/subscriber/","username":"subscriber"},"sport":{"uri":"/CyberCoachServer/resources/sports/Running/","id":1,"name":"Running"}}'
+    http_version: 
+  recorded_at: Tue, 08 Dec 2015 00:41:16 GMT
+recorded_with: VCR 2.9.3
