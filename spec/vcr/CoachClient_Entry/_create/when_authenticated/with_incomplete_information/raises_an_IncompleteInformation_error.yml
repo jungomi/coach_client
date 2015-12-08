@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://subscriber:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 08 Dec 2015 15:26:29 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/users/subscriber/","username":"subscriber","password":"*","realname":"Subscriber","email":"sub@scrib.er","datecreated":1449529350000,"publicvisible":2}'
+    http_version: 
+  recorded_at: Tue, 08 Dec 2015 15:33:59 GMT
+- request:
+    method: post
+    uri: http://subscriber:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/subscriber/running
+    body:
+      encoding: UTF-8
+      string: "<entryrunning></entryrunning>"
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '29'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 409
+      message: Conflict
+    headers:
+      Date:
+      - Tue, 08 Dec 2015 15:26:29 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: 'Not all required data provided. The following field is missing: "Publicvisible".'
+    http_version: 
+  recorded_at: Tue, 08 Dec 2015 15:33:59 GMT
+recorded_with: VCR 2.9.3

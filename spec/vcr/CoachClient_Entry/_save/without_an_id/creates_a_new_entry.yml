@@ -1,0 +1,133 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://subscriber:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 08 Dec 2015 15:26:29 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/users/subscriber/","username":"subscriber","password":"*","realname":"Subscriber","email":"sub@scrib.er","datecreated":1449529350000,"publicvisible":2}'
+    http_version: 
+  recorded_at: Tue, 08 Dec 2015 15:34:00 GMT
+- request:
+    method: post
+    uri: http://subscriber:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/subscriber/running
+    body:
+      encoding: UTF-8
+      string: "<entryrunning><publicvisible>2</publicvisible></entryrunning>"
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '61'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Tue, 08 Dec 2015 15:26:29 GMT
+      Location:
+      - "/CyberCoachServer/resources/users/subscriber/running/791/"
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Tue, 08 Dec 2015 15:34:00 GMT
+- request:
+    method: get
+    uri: http://subscriber:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 08 Dec 2015 15:26:30 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/users/subscriber/","username":"subscriber","password":"*","realname":"Subscriber","email":"sub@scrib.er","datecreated":1449529350000,"publicvisible":2}'
+    http_version: 
+  recorded_at: Tue, 08 Dec 2015 15:34:00 GMT
+- request:
+    method: get
+    uri: http://subscriber:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/subscriber/running/791
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 08 Dec 2015 15:26:30 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"entryrunning":{"uri":"/CyberCoachServer/resources/users/subscriber/Running/791/","id":791,"datecreated":1449588390015,"datemodified":1449588390015,"publicvisible":2,"subscription":{"uri":"/CyberCoachServer/resources/users/subscriber/Running/","id":2406}}}'
+    http_version: 
+  recorded_at: Tue, 08 Dec 2015 15:34:00 GMT
+recorded_with: VCR 2.9.3
