@@ -213,6 +213,15 @@ describe CoachClient::User do
         expect(subject.authenticated?).to be true
       end
     end
+
+    context "with special characters" do
+      let(:user) { 'specialcharacter' }
+
+      it "returns true" do
+        subject.password = "C'est un_test."
+        expect(subject.authenticated?).to be true
+      end
+    end
   end
 end
 
