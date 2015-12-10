@@ -1,11 +1,9 @@
 module CoachClient
   # A client to communicate with the CyberCoach service.
-  #
-  # @!attribute [r] url
-  #   The URL of the CyberCoach service.
-  #
-  #   @return [String]
   class Client
+    # The URL of the CyberCoach service.
+    #
+    # @return [String]
     attr_reader :url
 
     # Creates a new client with the CyberCoach informations.

@@ -4,9 +4,20 @@ module CoachClient
     # The size of the requests for the {.list} with all = true
     LIST_ALL_SIZE = 1000
 
-    attr_reader :id, :datecreated, :user1_confirmed, :user2_confirmed,
-      :subscriptions
-    attr_accessor :user1, :user2, :publicvisible
+    # @return [Integer]
+    attr_reader :id, :datecreated
+
+    # @return [Boolean]
+    attr_reader :user1_confirmed, :user2_confirmed
+
+    # @return [Array<CoachClient::Subscription>]
+    attr_reader :subscriptions
+
+    # @return [CoachClient::User]
+    attr_accessor :user1, :user2
+
+    # @return [Integer]
+    attr_accessor :publicvisible
 
     # Returns the relative path to the partnership resource.
     #

@@ -1,7 +1,11 @@
 module CoachClient
   # A response from RESTful request to the CyberCoach service.
   class Response
-    attr_reader :code, :header
+    # @return [Integer] the HTTP code
+    attr_reader :code
+
+    # @return [String] the HTTP headers
+    attr_reader :header
 
     # Creates a new response.
     #

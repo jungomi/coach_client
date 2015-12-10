@@ -5,8 +5,17 @@ module CoachClient
   #   {CoachClient::PartnershipSubscription} for a user or partnership
   #   subscription respectively.
   class Subscription < Resource
-    attr_reader :id, :datesubscribed, :entries
-    attr_accessor :sport, :publicvisible
+    # @return [Integer]
+    attr_reader :id, :datesubscribed
+
+    # @return [Array<CoachClient::Entry>]
+    attr_reader :entries
+
+    # @return [CoachClient::Sport]
+    attr_accessor :sport
+
+    # @return [Integer]
+    attr_accessor :publicvisible
 
     # Creates a new subscription.
     #

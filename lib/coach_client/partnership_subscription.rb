@@ -1,7 +1,10 @@
 module CoachClient
   # A partnership subscription resource of the CyberCoach service.
   class PartnershipSubscription < Subscription
+    # @return [Integer]
     attr_reader :id, :datesubscribed
+
+    # @return [CoachClient::Partnership]
     attr_accessor :partnership
 
     # Returns the relative path to the partnership subscription resource.

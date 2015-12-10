@@ -4,8 +4,23 @@ module CoachClient
     # The size of the requests for the {.list} with all = true
     LIST_ALL_SIZE = 1000
 
-    attr_reader :username, :datecreated, :partnerships, :subscriptions
-    attr_accessor :password, :realname, :email, :publicvisible, :newpassword
+    # @return [String]
+    attr_reader :username
+
+    # @return [Integer]
+    attr_reader :datecreated
+
+    # @return [Array<CoachClient::Partnership>]
+    attr_reader :partnerships
+
+    # @return [Array<CoachClient::UserSubscription>]
+    attr_reader :subscriptions
+
+    # @return [String]
+    attr_accessor :password, :realname, :email, :newpassword
+
+    # @return [Integer]
+    attr_accessor :publicvisible
 
     # Returns the relative path to the user resource.
     #

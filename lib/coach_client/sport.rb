@@ -1,7 +1,14 @@
 module CoachClient
   # A sport resource of the CyberCoach service.
   class Sport < Resource
-    attr_reader :sport, :id, :name, :description
+    # @return [Integer]
+    attr_reader :id
+
+    # @return [Symbol]
+    attr_reader :sport
+
+    # @return [String]
+    attr_reader :name, :description
 
     # Returns the relative path to the sport resource.
     #

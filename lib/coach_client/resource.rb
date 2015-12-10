@@ -1,9 +1,7 @@
 module CoachClient
   # A resource of the CyberCoach service.
-  #
-  # @!attribute [r] client
-  #   @return [CoachClient::Client]
   class Resource
+    # @return [CoachClient::Client]
     attr_accessor :client
 
     # Creates a new resource.

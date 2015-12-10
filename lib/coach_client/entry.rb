@@ -1,9 +1,20 @@
 module CoachClient
   # A entry resource of the CyberCoach serivce.
   class Entry < Resource
+    # @return [Integer]
     attr_reader :id, :datecreated, :datemodified
-    attr_accessor :publicvisible, :subscription, :comment,
-      :entrydate, :entryduration, :entrylocation
+
+    # @return [Integer]
+    attr_accessor :publicvisible, :entryduration
+
+    # @return [Date]
+    attr_accessor :entrydate
+
+    # @return [CoachClient::Subscription]
+    attr_accessor :subscription
+
+    # @return [String]
+    attr_accessor :comment, :entrylocation
 
     # Extracts the entry id from the URI
     #
