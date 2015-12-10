@@ -106,10 +106,10 @@ module CoachClient
     # @raise [CoachClient::NotFound] if the partnership does not exist
     # @return [CoachClient::Partnership] the updated partnership
     def update
-      response = if @user1.authenticated?
+      response = begin
                    CoachClient::Request.get(url, username: @user1.username,
                                             password: @user1.password)
-                 else
+                 rescue CoachClient::Exception
                    CoachClient::Request.get(url, username:@user2.username,
                                             password: @user2.password)
                  end
@@ -144,12 +144,12 @@ module CoachClient
         propose unless @user1_confirmed
         return confirm
       end
-      response = if @user1.authenticated?
+      response = begin
                    CoachClient::Request.put(url, username: @user1.username,
                                             password: @user1.password,
                                             payload: payload,
                                             content_type: :xml)
-                 else
+                 rescue CoachClient::Exception
                    CoachClient::Request.put(url, username: @user2.username,
                                             password: @user2.password,
                                             payload: payload,

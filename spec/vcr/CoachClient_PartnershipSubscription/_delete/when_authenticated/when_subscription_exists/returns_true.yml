@@ -1,38 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: http://partner1:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 10 Dec 2015 14:33:35 GMT
-      Content-Type:
-      - application/json
-      Transfer-Encoding:
-      - chunked
-      Server:
-      - Jetty(8.1.6.v20120903)
-    body:
-      encoding: UTF-8
-      string: '{"uri":"/CyberCoachServer/resources/users/partner1/","username":"partner1","password":"*","realname":"Partner
-        1","email":"partner@email.com","datecreated":1449507777000,"publicvisible":2}'
-    http_version: 
-  recorded_at: Thu, 10 Dec 2015 14:41:18 GMT
-- request:
     method: delete
     uri: http://partner1:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/partner1;partner2/boxing
     body:
@@ -51,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 10 Dec 2015 14:33:35 GMT
+      - Thu, 10 Dec 2015 17:05:50 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -60,9 +28,9 @@ http_interactions:
       - Jetty(8.1.6.v20120903)
     body:
       encoding: UTF-8
-      string: '{"uri":"/CyberCoachServer/resources/partnerships/partner1;partner2/Boxing/","id":2438,"datesubscribed":1449757993121,"publicvisible":2,"partnership":{"uri":"/CyberCoachServer/resources/partnerships/partner1;partner2/","id":10869},"sport":{"uri":"/CyberCoachServer/resources/sports/Boxing/","id":4,"name":"Boxing"}}'
+      string: '{"uri":"/CyberCoachServer/resources/partnerships/partner1;partner2/Boxing/","id":2442,"datesubscribed":1449767149963,"publicvisible":2,"partnership":{"uri":"/CyberCoachServer/resources/partnerships/partner1;partner2/","id":10869},"sport":{"uri":"/CyberCoachServer/resources/sports/Boxing/","id":4,"name":"Boxing"}}'
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 14:41:18 GMT
+  recorded_at: Thu, 10 Dec 2015 17:13:34 GMT
 - request:
     method: get
     uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/partner1;partner2/boxing
@@ -82,7 +50,7 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Thu, 10 Dec 2015 14:33:35 GMT
+      - Thu, 10 Dec 2015 17:05:50 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -94,5 +62,5 @@ http_interactions:
       string: Resource not available. Either the partnership is not subscribed to
         this sport or you are not authorized to view this resource.
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 14:41:18 GMT
+  recorded_at: Thu, 10 Dec 2015 17:13:34 GMT
 recorded_with: VCR 2.9.3

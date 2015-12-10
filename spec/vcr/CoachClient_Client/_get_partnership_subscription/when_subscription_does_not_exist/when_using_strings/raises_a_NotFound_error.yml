@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://user123:@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
+    uri: http://user123:@diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/user123;user321/boxing
     body:
       encoding: US-ASCII
       string: ''
@@ -15,39 +15,23 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 401
-      message: Unauthorized
+      code: 404
+      message: Not Found
     headers:
       Date:
-      - Thu, 10 Dec 2015 14:25:32 GMT
-      Www-Authenticate:
-      - Basic
+      - Thu, 10 Dec 2015 17:07:17 GMT
       Content-Type:
-      - text/html;charset=ISO-8859-1
-      Cache-Control:
-      - must-revalidate,no-cache,no-store
-      Content-Length:
-      - '1416'
+      - application/json
+      Transfer-Encoding:
+      - chunked
       Server:
       - Jetty(8.1.6.v20120903)
     body:
       encoding: UTF-8
-      string: "<html>\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html;
-        charset=ISO-8859-1\"/>\n<title>Error 401 Unauthorized</title>\n</head>\n<body><h2>HTTP
-        ERROR 401</h2>\n<p>Problem accessing /CyberCoachServer/resources/authenticateduser/.
-        Reason:\n<pre>    Unauthorized</pre></p><hr /><i><small>Powered by Jetty://</small></i><br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n\n</body>\n</html>\n"
+      string: Resource not available. Either the partnership is not subscribed to
+        this sport or you are not authorized to view this resource.
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 14:33:15 GMT
+  recorded_at: Thu, 10 Dec 2015 17:15:00 GMT
 - request:
     method: get
     uri: http://user321:@diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/user123;user321/boxing
@@ -67,7 +51,7 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Thu, 10 Dec 2015 14:25:32 GMT
+      - Thu, 10 Dec 2015 17:07:17 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -79,5 +63,5 @@ http_interactions:
       string: Resource not available. Either the partnership is not subscribed to
         this sport or you are not authorized to view this resource.
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 14:33:16 GMT
+  recorded_at: Thu, 10 Dec 2015 17:15:00 GMT
 recorded_with: VCR 2.9.3
