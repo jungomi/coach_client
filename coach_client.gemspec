@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "webmock", "~> 1.22.3"
   spec.add_development_dependency "vcr", "~> 2.9.3"
   spec.add_development_dependency "simplecov", "~> 0.11.1"
+  spec.add_development_dependency "codeclimate-test-reporter"
 
   spec.add_dependency "gyoku", "~> 1.3.1"
   spec.add_dependency "rest-client", "~> 1.8"
