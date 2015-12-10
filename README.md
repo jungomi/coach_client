@@ -1,5 +1,7 @@
 # CoachClient
 [![Gem Version](https://badge.fury.io/rb/coach_client.svg)](https://badge.fury.io/rb/coach_client)
+[![Code Climate](https://codeclimate.com/github/jungomi/coach_client/badges/gpa.svg)](https://codeclimate.com/github/jungomi/coach_client)
+[![Test Coverage](https://codeclimate.com/github/jungomi/coach_client/badges/coverage.svg)](https://codeclimate.com/github/jungomi/coach_client/coverage)
 
 A wrapper around the
 [CyberCoach](https://diuf.unifr.ch/drupal/softeng/teaching/studentprojects/cyber-coach-rest)
