@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Michael Jungo", "Amanda Karavolia", "Andrea Liechti", "Jocelyn Thode", "Simon Brulhart"]
   spec.email         = ["michael.jungo@unifr.ch"]
 
-  spec.summary       = %q{A wrapper around the CyberCoach API of unifr}
+  spec.summary       = %q{A wrapper around the CyberCoach API of the University of Fribourg}
   spec.homepage      = "https://github.com/jungomi/coach_client"
   spec.license       = "MIT"
 
@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.4.0"
   spec.add_development_dependency "webmock", "~> 1.22.3"
   spec.add_development_dependency "vcr", "~> 2.9.3"
+  spec.add_development_dependency "simplecov", "~> 0.11.1"
 
   spec.add_dependency "gyoku", "~> 1.3.1"
   spec.add_dependency "rest-client", "~> 1.8"
