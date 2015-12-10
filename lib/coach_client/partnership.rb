@@ -200,7 +200,22 @@ module CoachClient
       self
     end
 
+    # Cancels the partnership on the CyberCoach service.
+    #
+    # This sets the confirmation status of user1 to false.
+    #
+    # @raise [CoachClient::Unauthorized] if not authorized
+    # @return [CoachClient::Partnership] the invalidated partnership
+    def cancel
+      response = CoachClient::Request.delete(url, username: @user1.username,
+                                             password: @user1.password)
+      set_user_confirmed(response.to_h)
+      self
+    end
+
     # Invalidates the partnership on the CyberCoach service.
+    #
+    # This sets the confirmation status of user2 to false.
     #
     # @raise [CoachClient::Unauthorized] if not authorized
     # @return [CoachClient::Partnership] the invalidated partnership

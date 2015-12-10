@@ -243,6 +243,24 @@ describe CoachClient::Partnership do
     end
   end
 
+  describe "#cancel", :vcr do
+    let(:user1) { partner3 }
+
+    context "when not authenticated" do
+      it "raises an Unauthorized error" do
+        subject.user1.password = nil
+        expect { subject.cancel }.to raise_error(CoachClient::Unauthorized)
+      end
+    end
+
+    context "when authenticated" do
+      it "cancels user1" do
+        subject.cancel
+        expect(subject.user1_confirmed).to be false
+      end
+    end
+  end
+
   describe "#invalidate", :vcr do
     let(:user1) { partner3 }
 
@@ -255,7 +273,6 @@ describe CoachClient::Partnership do
 
     context "when authenticated" do
       it "invalidates user2" do
-        subject.user2.password = 'password'
         subject.invalidate
         expect(subject.user2_confirmed).to be false
       end

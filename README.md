@@ -150,7 +150,8 @@ user.partnerships.all? { |partnership| partnership.user1 == user } #=> true
 The partnership uses the following methods to modify its status:
 - `propose` proposes a partnership by user1
 - `confirm` confirms a partnership by user2
-- `invalidate` invalidates the confirmations of user2
+- `cancel` cancels the confirmation of user1
+- `invalidate` invalidates the confirmation of user2
 
 When using `save` on a partnership that is not operational, it first tries to
 propose and confirm it. Similarly `delete` will try to invalidate it before

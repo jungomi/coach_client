@@ -1,0 +1,34 @@
+---
+http_interactions:
+- request:
+    method: delete
+    uri: http://partner3:@diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/partner3;partner2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Thu, 10 Dec 2015 15:01:27 GMT
+      Www-Authenticate:
+      - basic realm="userdbauth"
+      Content-Length:
+      - '0'
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 10 Dec 2015 15:09:10 GMT
+recorded_with: VCR 2.9.3
