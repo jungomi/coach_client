@@ -1,20 +1,41 @@
 module CoachClient
+  # A user resource of the CyberCoach service.
   class User < Resource
+    # The size of the requests for the {.list} with all = true
     LIST_ALL_SIZE = 1000
 
     attr_reader :username, :datecreated, :partnerships, :subscriptions
     attr_accessor :password, :realname, :email, :publicvisible, :newpassword
 
+    # Returns the relative path to the user resource.
+    #
+    # @return [String] the relative path
     def self.path
       'users/'
     end
 
+    # Returns the total number of users present on the CyberCoach service.
+    #
+    # @param [CoachClient::Client] client
+    # @return [Integer] the total number of users
     def self.total(client)
       response = CoachClient::Request.get(client.url + path,
                                           params: { size: 0 })
       response.to_h[:available]
     end
 
+    # Returns a list of users from the CyberCoach service for which the given
+    # block returns a true value.
+    #
+    # If no block is given, the whole list is returned.
+    #
+    # @param [CoachClient::Client] client
+    # @param [Integer] size
+    # @param [Integer] start
+    # @param [Boolean] all
+    # @yieldparam [CoachClient::User] user the user
+    # @yieldreturn [Boolean] whether the user should be added to the list
+    # @return [Array<CoachClient::User>] the list of users
     def self.list(client, size: 20, start: 0, all: false)
       userlist  = []
       if all
@@ -36,6 +57,16 @@ module CoachClient
       userlist
     end
 
+    # Creates a new user.
+    #
+    # @param [CoachClient::Client] client
+    # @param [String] username
+    # @param [Hash] info additional user informations
+    # @option info [String] :password
+    # @option info [String] :realname
+    # @option info [String] :email
+    # @option info [Integer] :publicvisible
+    # @return [CoachClient::User]
     def initialize(client, username, info = {})
       super(client)
       @username = username
@@ -45,6 +76,10 @@ module CoachClient
       @publicvisible = info[:publicvisible]
     end
 
+    # Updates the user with the data from the CyberCoach service.
+    #
+    # @raise [CoachClient::NotFound] if the user does not exist
+    # @return [CoachClient::User] the updated user
     def update
       raise CoachClient::NotFound, 'User not found' unless exist?
       response = if authenticated?
@@ -76,6 +111,16 @@ module CoachClient
       self
     end
 
+    # Saves the user to the CyberCoach service.
+    #
+    # The user is created if it does not exist on the CyberCoach service,
+    # otherwise it tries to overwrite it.
+    #
+    # @raise [CoachClient::Unauthorized] if the user is not authorized
+    # @raise [CoachClient::IncompleteInformation] if not all needed information
+    #   is given
+    # @raise [CoachClient::NotSaved] if the user could not be saved
+    # @return [CoachClient::User] the saved user
     def save
       vals = self.to_h
       vals.delete(:username)
@@ -107,6 +152,11 @@ module CoachClient
       self
     end
 
+    # Deletes the user on the CyberCoach service.
+    #
+    # @raise [CoachClient::NotFound] if the user does not exist
+    # @raise [CoachClient::Unauthorized] if the user is not authorized
+    # @return [true]
     def delete
       raise CoachClient::NotFound unless exist?
       unless authenticated?
@@ -116,14 +166,23 @@ module CoachClient
       true
     end
 
+    # Returns whether the user is authenticated.
+    #
+    # @return [Boolean]
     def authenticated?
       @client.authenticated?(@username, @password)
     end
 
+    # Returns the URL of the user.
+    #
+    # @return [String] the url of the user
     def url
       @client.url + self.class.path + @username
     end
 
+    # Returns the string representation of the user.
+    #
+    # @return [String]
     def to_s
       @username.to_s
     end

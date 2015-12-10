@@ -1,11 +1,24 @@
 module CoachClient
+  # A resource of the CyberCoach service.
+  #
+  # @!attribute [r] client
+  #   @return [CoachClient::Client]
   class Resource
     attr_accessor :client
 
+    # Creates a new resource.
+    #
+    # @param [CoachClient::Client] client
+    # @return [CoachClient::Resource]
     def initialize(client)
       @client = client
     end
 
+    # Returns whether the resource exists on the CyberCoach service.
+    #
+    # @param [String] username
+    # @param [String] password
+    # @return [Boolean]
     def exist?(username: nil, password: nil)
       begin
         CoachClient::Request.get(url, username: username, password: password)
@@ -15,6 +28,9 @@ module CoachClient
       end
     end
 
+    # Returns the hash representation of the resource.
+    #
+    # @return [Hash]
     def to_h
       hash = {}
       instance_variables.each do |var|

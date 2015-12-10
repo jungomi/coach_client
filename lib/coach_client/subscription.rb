@@ -1,8 +1,19 @@
 module CoachClient
+  # A subscription resource of the CyberCoach service.
+  #
+  # @note Use the subclass {CoachClient::UserSubscription} or
+  #   {CoachClient::PartnershipSubscription} for a user or partnership
+  #   subscription respectively.
   class Subscription < Resource
     attr_reader :id, :datesubscribed, :entries
     attr_accessor :sport, :publicvisible
 
+    # Creates a new subscription.
+    #
+    # @param [CoachClient::Client] client
+    # @param [String, Symbol, CoachClient::Sport] sport
+    # @param [Integer] publicvisible
+    # @return [CoachClient::Subscription]
     def initialize(client, sport, publicvisible: nil)
       super(client)
       @sport = if sport.is_a?(CoachClient::Sport)
@@ -13,8 +24,11 @@ module CoachClient
       @publicvisible = publicvisible
     end
 
-    protected
-
+    # Updates the subscription with the data from the CyberCoach service.
+    #
+    # @raise [CoachClient::NotFound] if the subscription does not exist
+    # @param [CoachClient::User] user
+    # @return [CoachClient::Subscription] the updated subscription
     def update(user)
       raise CoachClient::NotFound, 'Subscription not found' unless exist?
       response = if @client.authenticated?(user.username, user.password)
@@ -38,6 +52,17 @@ module CoachClient
       self
     end
 
+    # Saves the subscription to the CyberCoach service.
+    #
+    # The subscription is created if it does not exist on the CyberCoach service,
+    # otherwise it tries to overwrite it.
+    #
+    # @raise [CoachClient::Unauthorized] if not authorized
+    # @raise [CoachClient::IncompleteInformation] if not all needed information
+    #   is given
+    # @raise [CoachClient::NotSaved] if the subscription could not be saved
+    # @param [CoachClient::User] user
+    # @return [CoachClient::Subscription] the saved subscription
     def save(user)
       vals = self.to_h
       vals.delete(:user)
@@ -62,7 +87,14 @@ module CoachClient
       self
     end
 
+    # Deletes the subscription on the CyberCoach service.
+    #
+    # @raise [CoachClient::NotFound] if the subscription does not exist
+    # @raise [CoachClient::Unauthorized] if not authorized
+    # @param [CoachClient::User] user
+    # @return [true]
     def delete(user)
+      raise CoachClient::NotFound unless exist?
       unless @client.authenticated?(user.username, user.password)
         raise CoachClient::Unauthorized.new(user), 'Unauthorized'
       end

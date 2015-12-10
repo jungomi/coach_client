@@ -15,7 +15,7 @@ require 'coach_client/user_subscription'
 require 'coach_client/user'
 require 'coach_client/version'
 
+# A wrapper around the CyberCoach service of the University of Fribourg
 module CoachClient
-  # Your code goes here...
 end
 

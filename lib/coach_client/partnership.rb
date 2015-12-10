@@ -1,26 +1,51 @@
 module CoachClient
+  # A partnership resource of the CyberCoach service.
   class Partnership < Resource
+    # The size of the requests for the {.list} with all = true
     LIST_ALL_SIZE = 1000
 
     attr_reader :id, :datecreated, :user1_confirmed, :user2_confirmed,
       :subscriptions
     attr_accessor :user1, :user2, :publicvisible
 
+    # Returns the relative path to the partnership resource.
+    #
+    # @return [String] the relative path
     def self.path
       'partnerships/'
     end
 
+    # Extracts the usernames from the partnership URI
+    #
+    # @param [String] uri
+    # @return [Array<String>] the usernames
     def self.extract_users_from_uri(uri)
       match = uri.match(/partnerships\/(\w+);(\w+)\//)
       match.captures
     end
 
+    # Returns the total number of partnerships present on the CyberCoach service.
+    #
+    # @param [CoachClient::Client] client
+    # @return [Integer] the total number of partnerships
     def self.total(client)
       response = CoachClient::Request.get(client.url + path,
                                           params: { size: 0 })
       response.to_h[:available]
     end
 
+    # Returns a list of partnerships from the CyberCoach service for which the
+    # given block returns a true value.
+    #
+    # If no block is given, the whole list is returned.
+    #
+    # @param [CoachClient::Client] client
+    # @param [Integer] size
+    # @param [Integer] start
+    # @param [Boolean] all
+    # @yieldparam [CoachClient::Partnership] partnership the partnership
+    # @yieldreturn [Boolean] whether the partnership should be added to the list
+    # @return [Array<CoachClient::Partnership>] the list of partnerships
     def self.list(client, size: 20, start: 0, all: false)
       list  = []
       if all
@@ -43,6 +68,13 @@ module CoachClient
       list
     end
 
+    # Creates a new partnership.
+    #
+    # @param [CoachClient::Client] client
+    # @param [String, CoachClient::User] user1
+    # @param [String, CoachClient::User] user2
+    # @param [Integer] publicvisible
+    # @return [CoachClient::Partnership]
     def initialize(client, user1, user2, publicvisible: nil)
       super(client)
       @user1 = if user1.is_a?(CoachClient::User)
@@ -58,6 +90,10 @@ module CoachClient
       @publicvisible = publicvisible
     end
 
+    # Updates the partnership with the data from the CyberCoach service.
+    #
+    # @raise [CoachClient::NotFound] if the partnership does not exist
+    # @return [CoachClient::Partnership] the updated partnership
     def update
       raise CoachClient::NotFound.new(self), 'Partnership not found' unless exist?
       response = if @client.authenticated?(@user1.username, @user1.password)
@@ -86,6 +122,16 @@ module CoachClient
       self
     end
 
+    # Saves the partnership to the CyberCoach service.
+    #
+    # The partnership is created if it does not exist on the CyberCoach service,
+    # otherwise it tries to overwrite it.
+    #
+    # @raise [CoachClient::Unauthorized] if not authorized
+    # @raise [CoachClient::IncompleteInformation] if not all needed information
+    #   is given
+    # @raise [CoachClient::NotSaved] if the partnership could not be saved
+    # @return [CoachClient::Partnership] the saved partnership
     def save
       unless operational?
         propose unless @user1_confirmed
@@ -117,6 +163,13 @@ module CoachClient
       self
     end
 
+    # Proposes the partnership on the CyberCoach service.
+    #
+    # @raise [CoachClient::Unauthorized] if not authorized
+    # @raise [CoachClient::IncompleteInformation] if not all needed information
+    #   is given
+    # @raise [CoachClient::NotProposed] if the partnership could not be proposed
+    # @return [CoachClient::Partnership] the proposed partnership
     def propose
       unless @client.authenticated?(@user1.username, @user1.password)
         raise CoachClient::Unauthorized.new(@user1), 'Unauthorized'
@@ -136,6 +189,13 @@ module CoachClient
       self
     end
 
+    # Confirms the partnership on the CyberCoach service.
+    #
+    # @raise [CoachClient::Unauthorized] if not authorized
+    # @raise [CoachClient::IncompleteInformation] if not all needed information
+    #   is given
+    # @raise [CoachClient::NotConfirmed] if the partnership could not be proposed
+    # @return [CoachClient::Partnership] the confirmed partnership
     def confirm
       unless @client.authenticated?(@user2.username, @user2.password)
         raise CoachClient::Unauthorized.new(@user2), 'Unauthorized'
@@ -155,6 +215,10 @@ module CoachClient
       self
     end
 
+    # Invalidates the partnership on the CyberCoach service.
+    #
+    # @raise [CoachClient::Unauthorized] if not authorized
+    # @return [CoachClient::Partnership] the invalidated partnership
     def invalidate
       unless @client.authenticated?(@user2.username, @user2.password)
           raise CoachClient::Unauthorized.new(@user2), 'Unauthorized'
@@ -165,6 +229,11 @@ module CoachClient
       self
     end
 
+    # Deletes the partnership on the CyberCoach service.
+    #
+    # @raise [CoachClient::NotFound] if the partnership does not exist
+    # @raise [CoachClient::Unauthorized] if not authorized
+    # @return [true]
     def delete
       raise CoachClient::NotFound unless exist?
       invalidate if user2_confirmed
@@ -179,14 +248,23 @@ module CoachClient
       true
     end
 
+    # Returns whether the partnership is operational.
+    #
+    # @return [Boolean]
     def operational?
       @user1_confirmed && @user2_confirmed
     end
 
+    # Returns the URL of the partnership.
+    #
+    # @return [String] the url of the partnership
     def url
       "#{@client.url}#{self.class.path}#{@user1.username};#{@user2.username}"
     end
 
+    # Returns the string representation of the user.
+    #
+    # @return [String]
     def to_s
       "#{@user1.username};#{@user2.username}"
     end
