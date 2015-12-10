@@ -120,8 +120,7 @@ module CoachClient
       @id = response[:id]
       @datecreated = response[:datecreated]
       @publicvisible = response[:publicvisible]
-      @user1_confirmed = response[:userconfirmed1]
-      @user2_confirmed = response[:userconfirmed2]
+      set_user_confirmed(response)
       @subscriptions = []
       unless response[:subscriptions].nil?
         response[:subscriptions].each do |s|
@@ -196,7 +195,7 @@ module CoachClient
       unless response.code == 200 || response.code == 201
         raise CoachClient::NotProposed.new(self), 'Could not propose partnership'
       end
-      @user1_confirmed = true
+      set_user_confirmed(response.to_h)
       self
     end
 
@@ -222,7 +221,7 @@ module CoachClient
       unless response.code == 200 || response.code == 201
         raise CoachClient::NotConfirmed.new(self), 'Could not confirm partnership'
       end
-      @user2_confirmed = true
+      set_user_confirmed(response.to_h)
       self
     end
 
@@ -234,9 +233,9 @@ module CoachClient
       unless @user2.authenticated?
           raise CoachClient::Unauthorized.new(@user2), 'Unauthorized'
       end
-      CoachClient::Request.delete(url, username: @user2.username,
-                                  password: @user2.password)
-      @user2_confirmed = false
+      response = CoachClient::Request.delete(url, username: @user2.username,
+                                             password: @user2.password)
+      set_user_confirmed(response.to_h)
       self
     end
 
@@ -247,15 +246,15 @@ module CoachClient
     # @return [true]
     def delete
       raise CoachClient::NotFound unless exist?
-      invalidate if user2_confirmed
-      if user1_confirmed
+      invalidate if @user2_confirmed
+      if @user1_confirmed
         unless @user1.authenticated?
           raise CoachClient::Unauthorized.new(@user1), 'Unauthorized'
         end
-        CoachClient::Request.delete(url, username: @user1.username,
-                                    password: @user1.password)
+        response = CoachClient::Request.delete(url, username: @user1.username,
+                                              password: @user1.password)
+        set_user_confirmed(response.to_h)
       end
-      @user1_confirmed = false
       true
     end
 
@@ -288,6 +287,16 @@ module CoachClient
       vals.delete(:user2)
       vals.delete_if { |_k, v| v.nil? || v.to_s.empty? }
       Gyoku.xml(partnership: vals)
+    end
+
+    def set_user_confirmed(response)
+      if response[:user1][:username] == @user1.username
+        @user1_confirmed = response[:userconfirmed1]
+        @user2_confirmed = response[:userconfirmed2]
+      else
+        @user1_confirmed = response[:userconfirmed2]
+        @user2_confirmed = response[:userconfirmed1]
+      end
     end
   end
 end
