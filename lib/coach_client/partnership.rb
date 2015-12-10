@@ -110,11 +110,9 @@ module CoachClient
       response = if @user1.authenticated?
                    CoachClient::Request.get(url, username: @user1.username,
                                             password: @user1.password)
-                 elsif @user2.authenticated?
+                 else
                    CoachClient::Request.get(url, username:@user2.username,
                                             password: @user2.password)
-                 else
-                   CoachClient::Request.get(url)
                  end
       response = response.to_h
       @id = response[:id]
@@ -147,26 +145,17 @@ module CoachClient
         propose unless @user1_confirmed
         return confirm
       end
-      user1 = @user1.authenticated?
-      user2 = @user2.authenticated? unless user1
-      unless user1 || user2
-        raise CoachClient::Unauthorized.new(@user2), 'Unauthorized'
-      end
-      begin
-        response = if user1
-                     CoachClient::Request.put(url, username: @user1.username,
-                                              password: @user1.password,
-                                              payload: payload,
-                                              content_type: :xml)
-                   else
-                     CoachClient::Request.put(url, username: @user2.username,
-                                              password: @user2.password,
-                                              payload: payload,
-                                              content_type: :xml)
-                   end
-      rescue RestClient::Conflict
-        raise CoachClient::IncompleteInformation.new(self), 'Incomplete information'
-      end
+      response = if @user1.authenticated?
+                   CoachClient::Request.put(url, username: @user1.username,
+                                            password: @user1.password,
+                                            payload: payload,
+                                            content_type: :xml)
+                 else
+                   CoachClient::Request.put(url, username: @user2.username,
+                                            password: @user2.password,
+                                            payload: payload,
+                                            content_type: :xml)
+                 end
       unless response.code == 200 || response.code == 201
         raise CoachClient::NotSaved.new(self), 'Could not save partnership'
       end
@@ -181,17 +170,10 @@ module CoachClient
     # @raise [CoachClient::NotProposed] if the partnership could not be proposed
     # @return [CoachClient::Partnership] the proposed partnership
     def propose
-      unless @user1.authenticated?
-        raise CoachClient::Unauthorized.new(@user1), 'Unauthorized'
-      end
-      begin
-        response = CoachClient::Request.put(url, username: @user1.username,
-                                            password: @user1.password,
-                                            payload: payload,
-                                            content_type: :xml)
-      rescue RestClient::Conflict
-        raise CoachClient::IncompleteInformation.new(self), 'Incomplete information'
-      end
+      response = CoachClient::Request.put(url, username: @user1.username,
+                                          password: @user1.password,
+                                          payload: payload,
+                                          content_type: :xml)
       unless response.code == 200 || response.code == 201
         raise CoachClient::NotProposed.new(self), 'Could not propose partnership'
       end
@@ -207,17 +189,10 @@ module CoachClient
     # @raise [CoachClient::NotConfirmed] if the partnership could not be proposed
     # @return [CoachClient::Partnership] the confirmed partnership
     def confirm
-      unless @user2.authenticated?
-        raise CoachClient::Unauthorized.new(@user2), 'Unauthorized'
-      end
-      begin
-        response = CoachClient::Request.put(url, username: @user2.username,
-                                            password: @user2.password,
-                                            payload: payload,
-                                            content_type: :xml)
-      rescue RestClient::Conflict
-        raise CoachClient::IncompleteInformation.new(self), 'Incomplete information'
-      end
+      response = CoachClient::Request.put(url, username: @user2.username,
+                                          password: @user2.password,
+                                          payload: payload,
+                                          content_type: :xml)
       unless response.code == 200 || response.code == 201
         raise CoachClient::NotConfirmed.new(self), 'Could not confirm partnership'
       end
@@ -230,9 +205,6 @@ module CoachClient
     # @raise [CoachClient::Unauthorized] if not authorized
     # @return [CoachClient::Partnership] the invalidated partnership
     def invalidate
-      unless @user2.authenticated?
-          raise CoachClient::Unauthorized.new(@user2), 'Unauthorized'
-      end
       response = CoachClient::Request.delete(url, username: @user2.username,
                                              password: @user2.password)
       set_user_confirmed(response.to_h)
@@ -248,9 +220,6 @@ module CoachClient
       raise CoachClient::NotFound unless exist?
       invalidate if @user2_confirmed
       if @user1_confirmed
-        unless @user1.authenticated?
-          raise CoachClient::Unauthorized.new(@user1), 'Unauthorized'
-        end
         response = CoachClient::Request.delete(url, username: @user1.username,
                                               password: @user1.password)
         set_user_confirmed(response.to_h)

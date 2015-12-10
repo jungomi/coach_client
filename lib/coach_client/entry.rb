@@ -97,12 +97,8 @@ module CoachClient
     # @return [CoachClient::User] the updated user
     def update
       raise CoachClient::NotFound, 'Entry not found' unless exist?
-      response = if user.authenticated?
-                   CoachClient::Request.get(url, username: user.username,
-                                            password: user.password)
-                 else
-                   CoachClient::Request.get(url)
-                 end
+      response = CoachClient::Request.get(url, username: user.username,
+                                          password: user.password)
       tag = "entry#{@subscription.sport}"
       response = response.to_h[tag.to_sym]
       @datecreated = response[:datecreated]
@@ -135,18 +131,11 @@ module CoachClient
     # @raise [CoachClient::NotSaved] if the entry could not be saved
     # @return [CoachClient::Entry] the created entry
     def create
-      unless user.authenticated?
-        raise CoachClient::Unauthorized.new(user), 'Unauthorized'
-      end
-      begin
-        response = CoachClient::Request.post(@subscription.url,
-                                             username: user.username,
-                                             password: user.password,
-                                             payload: payload,
-                                             content_type: :xml)
-      rescue RestClient::Conflict
-        raise CoachClient::IncompleteInformation.new(self), 'Incomplete information'
-      end
+      response = CoachClient::Request.post(@subscription.url,
+                                           username: user.username,
+                                           password: user.password,
+                                           payload: payload,
+                                           content_type: :xml)
       unless response.code == 200 || response.code == 201
         raise CoachClient::NotSaved.new(self), 'Could not create entry'
       end
@@ -166,17 +155,10 @@ module CoachClient
     # @return [CoachClient::Entry] the created entry
     def save
       return create unless @id
-      unless user.authenticated?
-        raise CoachClient::Unauthorized.new(user), 'Unauthorized'
-      end
-      begin
-        response = CoachClient::Request.put(url, username: user.username,
-                                            password: user.password,
-                                            payload: payload,
-                                            content_type: :xml)
-      rescue RestClient::Conflict
-        raise CoachClient::IncompleteInformation.new(self), 'Incomplete information'
-      end
+      response = CoachClient::Request.put(url, username: user.username,
+                                          password: user.password,
+                                          payload: payload,
+                                          content_type: :xml)
       unless response.code == 200 || response.code == 201
         raise CoachClient::NotSaved.new(self), 'Could not save entry'
       end
@@ -206,9 +188,6 @@ module CoachClient
     # @return [true]
     def delete
       raise CoachClient::NotFound.new(self), 'Entry not found' unless exist?
-      unless user.authenticated?
-        raise CoachClient::Unauthorized.new(user), 'Unauthorized'
-      end
       CoachClient::Request.delete(url, username: user.username,
                                   password: user.password)
       true
@@ -219,11 +198,7 @@ module CoachClient
     # @return [Boolean]
     def exist?
       return false unless @id
-      if user.authenticated?
-        super(username: user.username, password: user.password)
-      else
-        super
-      end
+      super(username: user.username, password: user.password)
     end
 
     # Returns the URL of the entry.

@@ -39,13 +39,8 @@ module CoachClient
     # @param [CoachClient::User] user
     # @return [CoachClient::Subscription] the updated subscription
     def update(user)
-      raise CoachClient::NotFound, 'Subscription not found' unless exist?
-      response = if user.authenticated?
-                   CoachClient::Request.get(url, username: user.username,
-                                            password: user.password)
-                 else
-                   CoachClient::Request.get(url)
-                 end
+      response = CoachClient::Request.get(url, username: user.username,
+                                          password: user.password)
       response = response.to_h
       @id = response[:id]
       @datesubscribed = response[:datesubscribed]
@@ -79,17 +74,10 @@ module CoachClient
       vals.delete(:sport)
       vals.delete_if { |_k, v| v.nil? || v.to_s.empty? }
       payload = Gyoku.xml(subscription: vals)
-      unless user.authenticated?
-        raise CoachClient::Unauthorized.new(user), 'Unauthorized'
-      end
-      begin
-        response = CoachClient::Request.put(url, username: user.username,
-                                            password: user.password,
-                                            payload: payload,
-                                            content_type: :xml)
-      rescue RestClient::Conflict
-        raise CoachClient::IncompleteInformation.new(self), 'Incomplete information'
-      end
+      response = CoachClient::Request.put(url, username: user.username,
+                                          password: user.password,
+                                          payload: payload,
+                                          content_type: :xml)
       unless response.code == 200 || response.code == 201
         raise CoachClient::NotSaved.new(self), 'Could not save subscription'
       end
@@ -103,10 +91,6 @@ module CoachClient
     # @param [CoachClient::User] user
     # @return [true]
     def delete(user)
-      raise CoachClient::NotFound unless exist?
-      unless user.authenticated?
-        raise CoachClient::Unauthorized.new(user), 'Unauthorized'
-      end
       CoachClient::Request.delete(url, username: user.username,
                                   password: user.password)
       true

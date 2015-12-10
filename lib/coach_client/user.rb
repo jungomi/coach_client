@@ -97,12 +97,8 @@ module CoachClient
     # @return [CoachClient::User] the updated user
     def update
       raise CoachClient::NotFound, 'User not found' unless exist?
-      response = if authenticated?
-                   CoachClient::Request.get(url, username: @username,
-                                            password: @password)
-                 else
-                   CoachClient::Request.get(url)
-                 end
+      response = CoachClient::Request.get(url, username: @username,
+                                          password: @password)
       response = response.to_h
       @realname = response[:realname]
       @email = response[:email]
@@ -142,23 +138,10 @@ module CoachClient
       vals.delete_if { |_k, v| v.nil? || v.to_s.empty? }
       vals[:password] = vals.delete(:newpassword) if vals[:newpassword]
       payload = Gyoku.xml(user: vals)
-      response = if exist?
-                   unless authenticated?
-                     raise CoachClient::Unauthorized.new(self), 'Unauthorized'
-                   end
-                   CoachClient::Request.put(url, username: @username,
-                                            password: @password,
-                                            payload: payload,
-                                            content_type: :xml)
-                 else
-                   begin
-                     CoachClient::Request.put(url, payload: payload,
-                                              content_type: :xml)
-                   rescue RestClient::Conflict
-                     raise CoachClient::IncompleteInformation.new(self),
-                       'Incomplete user information'
-                   end
-                 end
+      response = CoachClient::Request.put(url, username: @username,
+                                          password: @password,
+                                          payload: payload,
+                                          content_type: :xml)
       unless response.code == 200 || response.code == 201
         raise CoachClient::NotSaved.new(self), 'Could not save user'
       end
@@ -174,9 +157,6 @@ module CoachClient
     # @return [true]
     def delete
       raise CoachClient::NotFound unless exist?
-      unless authenticated?
-        raise CoachClient::Unauthorized.new(self), 'Unauthorized'
-      end
       CoachClient::Request.delete(url, username: @username, password: @password)
       true
     end
