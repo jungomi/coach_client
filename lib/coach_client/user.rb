@@ -52,7 +52,7 @@ module CoachClient
     # @yieldreturn [Boolean] whether the user should be added to the list
     # @return [Array<CoachClient::User>] the list of users
     def self.list(client, size: 20, start: 0, all: false)
-      userlist  = []
+      userlist = []
       if all
         total = self.total(client)
         start = 0
@@ -62,7 +62,7 @@ module CoachClient
         response = CoachClient::Request.get(client.url + path,
                                             params: { start: start, size: size })
         response.to_h[:users].each do |u|
-          user = self.new(client, u[:username])
+          user = new(client, u[:username])
           userlist << user if !block_given? || yield(user)
         end
         break unless all
@@ -132,7 +132,7 @@ module CoachClient
     # @raise [CoachClient::NotSaved] if the user could not be saved
     # @return [CoachClient::User] the saved user
     def save
-      vals = self.to_h
+      vals = to_h
       vals.delete(:username)
       vals.delete_if { |_k, v| v.nil? || v.to_s.empty? }
       vals[:password] = vals.delete(:newpassword) if vals[:newpassword]
@@ -142,7 +142,7 @@ module CoachClient
                                           payload: payload,
                                           content_type: :xml)
       unless response.code == 200 || response.code == 201
-        raise CoachClient::NotSaved.new(self), 'Could not save user'
+        fail CoachClient::NotSaved.new(self), 'Could not save user'
       end
       @password = vals[:password]
       @newpassword = nil
@@ -155,7 +155,7 @@ module CoachClient
     # @raise [CoachClient::Unauthorized] if the user is not authorized
     # @return [true]
     def delete
-      raise CoachClient::NotFound.new(self), 'User not found' unless exist?
+      fail CoachClient::NotFound.new(self), 'User not found' unless exist?
       CoachClient::Request.delete(url, username: @username, password: @password)
       true
     end

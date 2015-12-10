@@ -58,7 +58,7 @@ module CoachClient
     # @yieldreturn [Boolean] whether the partnership should be added to the list
     # @return [Array<CoachClient::Partnership>] the list of partnerships
     def self.list(client, size: 20, start: 0, all: false)
-      list  = []
+      list = []
       if all
         total = self.total(client)
         start = 0
@@ -69,7 +69,7 @@ module CoachClient
                                             params: { start: start, size: size })
         response.to_h[:partnerships].each do |p|
           user1, user2 = extract_users_from_uri(p[:uri])
-          partnership = self.new(client, user1, user2)
+          partnership = new(client, user1, user2)
           list << partnership if !block_given? || yield(partnership)
         end
         break unless all
@@ -110,7 +110,7 @@ module CoachClient
                    CoachClient::Request.get(url, username: @user1.username,
                                             password: @user1.password)
                  rescue CoachClient::Exception
-                   CoachClient::Request.get(url, username:@user2.username,
+                   CoachClient::Request.get(url, username: @user2.username,
                                             password: @user2.password)
                  end
       response = response.to_h
@@ -156,7 +156,7 @@ module CoachClient
                                             content_type: :xml)
                  end
       unless response.code == 200 || response.code == 201
-        raise CoachClient::NotSaved.new(self), 'Could not save partnership'
+        fail CoachClient::NotSaved.new(self), 'Could not save partnership'
       end
       self
     end
@@ -174,7 +174,7 @@ module CoachClient
                                           payload: payload,
                                           content_type: :xml)
       unless response.code == 200 || response.code == 201
-        raise CoachClient::NotProposed.new(self), 'Could not propose partnership'
+        fail CoachClient::NotProposed.new(self), 'Could not propose partnership'
       end
       set_user_confirmed(response.to_h)
       self
@@ -193,7 +193,7 @@ module CoachClient
                                           payload: payload,
                                           content_type: :xml)
       unless response.code == 200 || response.code == 201
-        raise CoachClient::NotConfirmed.new(self), 'Could not confirm partnership'
+        fail CoachClient::NotConfirmed.new(self), 'Could not confirm partnership'
       end
       set_user_confirmed(response.to_h)
       self
@@ -231,7 +231,7 @@ module CoachClient
     # @raise [CoachClient::Unauthorized] if not authorized
     # @return [true]
     def delete
-      raise CoachClient::NotFound unless exist?
+      fail CoachClient::NotFound unless exist?
       invalidate if @user2_confirmed
       if @user1_confirmed
         response = CoachClient::Request.delete(url, username: @user1.username,
@@ -265,7 +265,7 @@ module CoachClient
     private
 
     def payload
-      vals = self.to_h
+      vals = to_h
       vals.delete(:user1)
       vals.delete(:user2)
       vals.delete_if { |_k, v| v.nil? || v.to_s.empty? }

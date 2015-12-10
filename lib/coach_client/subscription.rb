@@ -68,7 +68,7 @@ module CoachClient
     # @param [CoachClient::User] user
     # @return [CoachClient::Subscription] the saved subscription
     def save(user)
-      vals = self.to_h
+      vals = to_h
       vals.delete(:user)
       vals.delete(:partnership)
       vals.delete(:sport)
@@ -79,7 +79,7 @@ module CoachClient
                                           payload: payload,
                                           content_type: :xml)
       unless response.code == 200 || response.code == 201
-        raise CoachClient::NotSaved.new(self), 'Could not save subscription'
+        fail CoachClient::NotSaved.new(self), 'Could not save subscription'
       end
       self
     end

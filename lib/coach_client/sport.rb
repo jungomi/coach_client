@@ -40,7 +40,7 @@ module CoachClient
       sportlist  = []
       response = CoachClient::Request.get(client.url + path)
       response.to_h[:sports].each do |s|
-        sport = self.new(client, s[:name])
+        sport = new(client, s[:name])
         sportlist << sport if !block_given? || yield(sport)
       end
       sportlist

@@ -96,7 +96,7 @@ module CoachClient
     # @raise [CoachClient::NotFound] if the entry does not exist
     # @return [CoachClient::User] the updated user
     def update
-      raise CoachClient::NotFound.new(self), 'Entry not found' if @id.nil?
+      fail CoachClient::NotFound.new(self), 'Entry not found' if @id.nil?
       response = CoachClient::Request.get(url, username: user.username,
                                           password: user.password)
       tag = "entry#{@subscription.sport}"
@@ -137,7 +137,7 @@ module CoachClient
                                            payload: payload,
                                            content_type: :xml)
       unless response.code == 200 || response.code == 201
-        raise CoachClient::NotSaved.new(self), 'Could not create entry'
+        fail CoachClient::NotSaved.new(self), 'Could not create entry'
       end
       @id = self.class.extract_id_from_uri(response.header[:location])
       self
@@ -160,7 +160,7 @@ module CoachClient
                                           payload: payload,
                                           content_type: :xml)
       unless response.code == 200 || response.code == 201
-        raise CoachClient::NotSaved.new(self), 'Could not save entry'
+        fail CoachClient::NotSaved.new(self), 'Could not save entry'
       end
       self
     end
@@ -187,7 +187,7 @@ module CoachClient
     # @raise [CoachClient::Unauthorized] if not authorized
     # @return [true]
     def delete
-      raise CoachClient::NotFound.new(self), 'Entry not found' unless exist?
+      fail CoachClient::NotFound.new(self), 'Entry not found' unless exist?
       CoachClient::Request.delete(url, username: user.username,
                                   password: user.password)
       true
@@ -218,7 +218,7 @@ module CoachClient
     private
 
     def payload
-      vals = self.to_h
+      vals = to_h
       vals.delete(:subscription)
       vals.delete_if { |_k, v| v.nil? || v.to_s.empty? }
       tag = "entry#{@subscription.sport}"

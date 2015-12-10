@@ -46,7 +46,7 @@ module CoachClient
         raise CoachClient::NotFound, e.message
       rescue RestClient::Unauthorized => e
         raise CoachClient::Unauthorized, e.message
-      rescue RestClient::Conflict => e
+      rescue RestClient::Conflict
         raise CoachClient::IncompleteInformation, 'Incomplete Information'
       end
       CoachClient::Response.new(response.headers, response.body, response.code)
@@ -72,7 +72,7 @@ module CoachClient
         raise CoachClient::NotFound, e.message
       rescue RestClient::Unauthorized => e
         raise CoachClient::Unauthorized, e.message
-      rescue RestClient::Conflict => e
+      rescue RestClient::Conflict
         raise CoachClient::IncompleteInformation, 'Incomplete Information'
       end
       CoachClient::Response.new(response.headers, response.body, response.code)
