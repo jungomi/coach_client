@@ -40,8 +40,7 @@ module CoachClient
     # @return [CoachClient::PartnershipSubscription] the updated partnership
     #   subscription
     def update
-      if @client.authenticated?(@partnership.user1.username,
-                                @partnership.user1.password)
+      if @partnership.user1.authenticated?
         super(@partnership.user1)
       else
         super(@partnership.user2)
@@ -61,8 +60,7 @@ module CoachClient
     # @return [CoachClient::PartnershipSubscription] the saved partnership
     #   subscription
     def save
-      if @client.authenticated?(@partnership.user1.username,
-                                @partnership.user1.password)
+      if @partnership.user1.authenticated?
         super(@partnership.user1)
       else
         super(@partnership.user2)
@@ -76,8 +74,7 @@ module CoachClient
     # @raise [CoachClient::Unauthorized] if not authorized
     # @return [true]
     def delete
-      if @client.authenticated?(@partnership.user1.username,
-                                @partnership.user1.password)
+      if @partnership.user1.authenticated?
         super(@partnership.user1)
       else
         super(@partnership.user2)

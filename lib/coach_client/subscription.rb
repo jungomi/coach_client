@@ -40,7 +40,7 @@ module CoachClient
     # @return [CoachClient::Subscription] the updated subscription
     def update(user)
       raise CoachClient::NotFound, 'Subscription not found' unless exist?
-      response = if @client.authenticated?(user.username, user.password)
+      response = if user.authenticated?
                    CoachClient::Request.get(url, username: user.username,
                                             password: user.password)
                  else
@@ -79,7 +79,7 @@ module CoachClient
       vals.delete(:sport)
       vals.delete_if { |_k, v| v.nil? || v.to_s.empty? }
       payload = Gyoku.xml(subscription: vals)
-      unless @client.authenticated?(user.username, user.password)
+      unless user.authenticated?
         raise CoachClient::Unauthorized.new(user), 'Unauthorized'
       end
       begin
@@ -104,7 +104,7 @@ module CoachClient
     # @return [true]
     def delete(user)
       raise CoachClient::NotFound unless exist?
-      unless @client.authenticated?(user.username, user.password)
+      unless user.authenticated?
         raise CoachClient::Unauthorized.new(user), 'Unauthorized'
       end
       CoachClient::Request.delete(url, username: user.username,

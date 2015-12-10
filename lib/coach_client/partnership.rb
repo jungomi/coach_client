@@ -107,10 +107,10 @@ module CoachClient
     # @return [CoachClient::Partnership] the updated partnership
     def update
       raise CoachClient::NotFound.new(self), 'Partnership not found' unless exist?
-      response = if @client.authenticated?(@user1.username, @user1.password)
+      response = if @user1.authenticated?
                    CoachClient::Request.get(url, username: @user1.username,
                                             password: @user1.password)
-                 elsif @client.authenticated?(@user2.username, @user2.password)
+                 elsif @user2.authenticated?
                    CoachClient::Request.get(url, username:@user2.username,
                                             password: @user2.password)
                  else
@@ -148,8 +148,8 @@ module CoachClient
         propose unless @user1_confirmed
         return confirm
       end
-      user1 = @client.authenticated?(@user1.username, @user1.password)
-      user2 = @client.authenticated?(@user2.username, @user2.password) unless user1
+      user1 = @user1.authenticated?
+      user2 = @user2.authenticated? unless user1
       unless user1 || user2
         raise CoachClient::Unauthorized.new(@user2), 'Unauthorized'
       end
@@ -182,7 +182,7 @@ module CoachClient
     # @raise [CoachClient::NotProposed] if the partnership could not be proposed
     # @return [CoachClient::Partnership] the proposed partnership
     def propose
-      unless @client.authenticated?(@user1.username, @user1.password)
+      unless @user1.authenticated?
         raise CoachClient::Unauthorized.new(@user1), 'Unauthorized'
       end
       begin
@@ -208,7 +208,7 @@ module CoachClient
     # @raise [CoachClient::NotConfirmed] if the partnership could not be proposed
     # @return [CoachClient::Partnership] the confirmed partnership
     def confirm
-      unless @client.authenticated?(@user2.username, @user2.password)
+      unless @user2.authenticated?
         raise CoachClient::Unauthorized.new(@user2), 'Unauthorized'
       end
       begin
@@ -231,7 +231,7 @@ module CoachClient
     # @raise [CoachClient::Unauthorized] if not authorized
     # @return [CoachClient::Partnership] the invalidated partnership
     def invalidate
-      unless @client.authenticated?(@user2.username, @user2.password)
+      unless @user2.authenticated?
           raise CoachClient::Unauthorized.new(@user2), 'Unauthorized'
       end
       CoachClient::Request.delete(url, username: @user2.username,
@@ -249,7 +249,7 @@ module CoachClient
       raise CoachClient::NotFound unless exist?
       invalidate if user2_confirmed
       if user1_confirmed
-        unless @client.authenticated?(@user1.username, @user1.password)
+        unless @user1.authenticated?
           raise CoachClient::Unauthorized.new(@user1), 'Unauthorized'
         end
         CoachClient::Request.delete(url, username: @user1.username,

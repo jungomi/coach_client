@@ -54,7 +54,7 @@ module CoachClient
     # @return [CoachClient::User] the updated user
     def update
       raise CoachClient::NotFound, 'Entry not found' unless exist?
-      response = if @client.authenticated?(user.username, user.password)
+      response = if user.authenticated?
                    CoachClient::Request.get(url, username: user.username,
                                             password: user.password)
                  else
@@ -80,7 +80,7 @@ module CoachClient
     # @raise [CoachClient::NotSaved] if the entry could not be saved
     # @return [CoachClient::Entry] the created entry
     def create
-      unless @client.authenticated?(user.username, user.password)
+      unless user.authenticated?
         raise CoachClient::Unauthorized.new(user), 'Unauthorized'
       end
       begin
@@ -111,7 +111,7 @@ module CoachClient
     # @return [CoachClient::Entry] the created entry
     def save
       return create unless @id
-      unless @client.authenticated?(user.username, user.password)
+      unless user.authenticated?
         raise CoachClient::Unauthorized.new(user), 'Unauthorized'
       end
       begin
@@ -134,7 +134,7 @@ module CoachClient
     def user
       if @subscription.is_a?(CoachClient::PartnershipSubscription)
         partnership = @subscription.partnership
-        if @client.authenticated?(partnership.user1.username, partnership.user1.password)
+        if partnership.user1.authenticated?
           partnership.user1
         else
           partnership.user2
@@ -151,7 +151,7 @@ module CoachClient
     # @return [true]
     def delete
       raise CoachClient::NotFound.new(self), 'Entry not found' unless exist?
-      unless @client.authenticated?(user.username, user.password)
+      unless user.authenticated?
         raise CoachClient::Unauthorized.new(user), 'Unauthorized'
       end
       CoachClient::Request.delete(url, username: user.username,
@@ -166,7 +166,7 @@ module CoachClient
     # @return [Boolean]
     def exist?(username: nil, password: nil)
       return false unless @id
-      if @client.authenticated?(user.username, user.password)
+      if user.authenticated?
         super(username: user.username, password: user.password)
       else
         super
