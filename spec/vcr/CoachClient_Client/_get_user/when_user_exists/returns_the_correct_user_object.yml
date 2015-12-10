@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 29 Nov 2015 03:22:04 GMT
+      - Thu, 10 Dec 2015 14:25:29 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -28,60 +28,12 @@ http_interactions:
       - Jetty(8.1.6.v20120903)
     body:
       encoding: UTF-8
-      string: '{"uri":"/CyberCoachServer/resources/users/user123/","username":"user123","publicvisible":1,"partnerships":[{"uri":"/CyberCoachServer/resources/partnerships/user123;newuser26/","id":41},{"uri":"/CyberCoachServer/resources/partnerships/user123;user321/","id":9349}],"subscriptions":[{"uri":"/CyberCoachServer/resources/users/user123/Boxing/","id":410},{"uri":"/CyberCoachServer/resources/users/user123/Cycling/","id":411},{"uri":"/CyberCoachServer/resources/users/user123/Soccer/","id":412},{"uri":"/CyberCoachServer/resources/users/user123/Running/","id":825}]}'
+      string: '{"uri":"/CyberCoachServer/resources/users/user123/","username":"user123","publicvisible":1,"partnerships":[{"uri":"/CyberCoachServer/resources/partnerships/user123;newuser26/","id":41},{"uri":"/CyberCoachServer/resources/partnerships/user123;user321/","id":9349}],"subscriptions":[{"uri":"/CyberCoachServer/resources/users/user123/Soccer/","id":412},{"uri":"/CyberCoachServer/resources/users/user123/Running/","id":1902},{"uri":"/CyberCoachServer/resources/users/user123/Boxing/","id":1904}]}'
     http_version: 
-  recorded_at: Sun, 29 Nov 2015 03:28:29 GMT
+  recorded_at: Thu, 10 Dec 2015 14:33:12 GMT
 - request:
     method: get
-    uri: http://user123:@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 401
-      message: Unauthorized
-    headers:
-      Date:
-      - Sun, 29 Nov 2015 03:22:04 GMT
-      Www-Authenticate:
-      - Basic
-      Content-Type:
-      - text/html;charset=ISO-8859-1
-      Cache-Control:
-      - must-revalidate,no-cache,no-store
-      Content-Length:
-      - '1416'
-      Server:
-      - Jetty(8.1.6.v20120903)
-    body:
-      encoding: UTF-8
-      string: "<html>\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html;
-        charset=ISO-8859-1\"/>\n<title>Error 401 Unauthorized</title>\n</head>\n<body><h2>HTTP
-        ERROR 401</h2>\n<p>Problem accessing /CyberCoachServer/resources/authenticateduser/.
-        Reason:\n<pre>    Unauthorized</pre></p><hr /><i><small>Powered by Jetty://</small></i><br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n\n</body>\n</html>\n"
-    http_version: 
-  recorded_at: Sun, 29 Nov 2015 03:28:29 GMT
-- request:
-    method: get
-    uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/user123
+    uri: http://user123:@diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/user123
     body:
       encoding: US-ASCII
       string: ''
@@ -98,7 +50,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 29 Nov 2015 03:22:04 GMT
+      - Thu, 10 Dec 2015 14:25:29 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -107,7 +59,7 @@ http_interactions:
       - Jetty(8.1.6.v20120903)
     body:
       encoding: UTF-8
-      string: '{"uri":"/CyberCoachServer/resources/users/user123/","username":"user123","publicvisible":1,"partnerships":[{"uri":"/CyberCoachServer/resources/partnerships/user123;newuser26/","id":41},{"uri":"/CyberCoachServer/resources/partnerships/user123;user321/","id":9349}],"subscriptions":[{"uri":"/CyberCoachServer/resources/users/user123/Boxing/","id":410},{"uri":"/CyberCoachServer/resources/users/user123/Cycling/","id":411},{"uri":"/CyberCoachServer/resources/users/user123/Soccer/","id":412},{"uri":"/CyberCoachServer/resources/users/user123/Running/","id":825}]}'
+      string: '{"uri":"/CyberCoachServer/resources/users/user123/","username":"user123","publicvisible":1,"partnerships":[{"uri":"/CyberCoachServer/resources/partnerships/user123;newuser26/","id":41},{"uri":"/CyberCoachServer/resources/partnerships/user123;user321/","id":9349}],"subscriptions":[{"uri":"/CyberCoachServer/resources/users/user123/Soccer/","id":412},{"uri":"/CyberCoachServer/resources/users/user123/Running/","id":1902},{"uri":"/CyberCoachServer/resources/users/user123/Boxing/","id":1904}]}'
     http_version: 
-  recorded_at: Sun, 29 Nov 2015 03:28:29 GMT
+  recorded_at: Thu, 10 Dec 2015 14:33:12 GMT
 recorded_with: VCR 2.9.3

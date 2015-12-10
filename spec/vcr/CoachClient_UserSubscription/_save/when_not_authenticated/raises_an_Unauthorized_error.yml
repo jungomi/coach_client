@@ -1,16 +1,20 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: http://subscriber:@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
+    method: put
+    uri: http://subscriber:@diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/subscriber/boxing
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: "<subscription></subscription>"
     headers:
       Accept:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '29'
       User-Agent:
       - Ruby
   response:
@@ -19,33 +23,18 @@ http_interactions:
       message: Unauthorized
     headers:
       Date:
-      - Tue, 08 Dec 2015 00:33:51 GMT
+      - Thu, 10 Dec 2015 14:24:42 GMT
       Www-Authenticate:
       - Basic
       Content-Type:
-      - text/html;charset=ISO-8859-1
-      Cache-Control:
-      - must-revalidate,no-cache,no-store
-      Content-Length:
-      - '1416'
+      - application/json
+      Transfer-Encoding:
+      - chunked
       Server:
       - Jetty(8.1.6.v20120903)
     body:
       encoding: UTF-8
-      string: "<html>\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html;
-        charset=ISO-8859-1\"/>\n<title>Error 401 Unauthorized</title>\n</head>\n<body><h2>HTTP
-        ERROR 401</h2>\n<p>Problem accessing /CyberCoachServer/resources/authenticateduser/.
-        Reason:\n<pre>    Unauthorized</pre></p><hr /><i><small>Powered by Jetty://</small></i><br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n\n</body>\n</html>\n"
+      string: Authentication failed. Permission not granted to access this resource.
     http_version: 
-  recorded_at: Tue, 08 Dec 2015 00:41:17 GMT
+  recorded_at: Thu, 10 Dec 2015 14:32:25 GMT
 recorded_with: VCR 2.9.3

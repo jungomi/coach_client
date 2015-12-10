@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 07 Dec 2015 16:13:28 GMT
+      - Thu, 10 Dec 2015 14:10:50 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -28,13 +28,12 @@ http_interactions:
       - Jetty(8.1.6.v20120903)
     body:
       encoding: UTF-8
-      string: '{"uri":"/CyberCoachServer/resources/users/brandnewuser/","username":"brandnewuser","password":"*","realname":"A
-        real name","email":"email@address.com","datecreated":1449504807251,"publicvisible":2}'
+      string: '{"uri":"/CyberCoachServer/resources/users/brandnewuser/","username":"brandnewuser","password":"*","realname":"bla","email":"bl@bl.ch","datecreated":1449756644198,"publicvisible":2}'
     http_version: 
-  recorded_at: Mon, 07 Dec 2015 16:20:52 GMT
+  recorded_at: Thu, 10 Dec 2015 14:18:33 GMT
 - request:
-    method: get
-    uri: http://brandnewuser:incorrectpassword@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
+    method: delete
+    uri: http://brandnewuser:incorrectpassword@diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/brandnewuser
     body:
       encoding: US-ASCII
       string: ''
@@ -51,33 +50,16 @@ http_interactions:
       message: Unauthorized
     headers:
       Date:
-      - Mon, 07 Dec 2015 16:13:29 GMT
+      - Thu, 10 Dec 2015 14:10:50 GMT
       Www-Authenticate:
-      - Basic
-      Content-Type:
-      - text/html;charset=ISO-8859-1
-      Cache-Control:
-      - must-revalidate,no-cache,no-store
+      - basic realm="userdbauth"
       Content-Length:
-      - '1416'
+      - '0'
       Server:
       - Jetty(8.1.6.v20120903)
     body:
       encoding: UTF-8
-      string: "<html>\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html;
-        charset=ISO-8859-1\"/>\n<title>Error 401 Unauthorized</title>\n</head>\n<body><h2>HTTP
-        ERROR 401</h2>\n<p>Problem accessing /CyberCoachServer/resources/authenticateduser/.
-        Reason:\n<pre>    Unauthorized</pre></p><hr /><i><small>Powered by Jetty://</small></i><br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n\n</body>\n</html>\n"
+      string: ''
     http_version: 
-  recorded_at: Mon, 07 Dec 2015 16:20:52 GMT
+  recorded_at: Thu, 10 Dec 2015 14:18:33 GMT
 recorded_with: VCR 2.9.3

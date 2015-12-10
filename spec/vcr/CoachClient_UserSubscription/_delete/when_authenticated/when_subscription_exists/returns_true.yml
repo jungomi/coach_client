@@ -1,68 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/subscriber/boxing
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 10 Dec 2015 02:51:46 GMT
-      Content-Type:
-      - application/json
-      Transfer-Encoding:
-      - chunked
-      Server:
-      - Jetty(8.1.6.v20120903)
-    body:
-      encoding: UTF-8
-      string: '{"uri":"/CyberCoachServer/resources/users/subscriber/Boxing/","id":2429,"datesubscribed":1449715905929,"publicvisible":2,"user":{"uri":"/CyberCoachServer/resources/users/subscriber/","username":"subscriber"},"sport":{"uri":"/CyberCoachServer/resources/sports/Boxing/","id":4,"name":"Boxing"}}'
-    http_version: 
-  recorded_at: Thu, 10 Dec 2015 02:59:25 GMT
-- request:
-    method: get
-    uri: http://subscriber:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 10 Dec 2015 02:51:46 GMT
-      Content-Type:
-      - application/json
-      Transfer-Encoding:
-      - chunked
-      Server:
-      - Jetty(8.1.6.v20120903)
-    body:
-      encoding: UTF-8
-      string: '{"uri":"/CyberCoachServer/resources/users/subscriber/","username":"subscriber","password":"*","realname":"Subscriber","email":"sub@scrib.er","datecreated":1449529350000,"publicvisible":2}'
-    http_version: 
-  recorded_at: Thu, 10 Dec 2015 02:59:25 GMT
-- request:
     method: delete
     uri: http://subscriber:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/subscriber/boxing
     body:
@@ -70,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - "*/*; q=0.5, application/xml"
+      - application/json
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
@@ -81,21 +19,18 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 10 Dec 2015 02:51:46 GMT
+      - Thu, 10 Dec 2015 14:28:56 GMT
       Content-Type:
-      - application/xml
-      Content-Length:
-      - '391'
+      - application/json
+      Transfer-Encoding:
+      - chunked
       Server:
       - Jetty(8.1.6.v20120903)
     body:
       encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><subscription
-        datesubscribed="2015-12-10T03:51:45.929+01:00" id="2429" uri="/CyberCoachServer/resources/users/subscriber/Boxing/"><publicvisible>2</publicvisible><sport
-        id="4" name="Boxing" uri="/CyberCoachServer/resources/sports/Boxing/"/><user
-        username="subscriber" uri="/CyberCoachServer/resources/users/subscriber/"/></subscription>
+      string: '{"uri":"/CyberCoachServer/resources/users/subscriber/Boxing/","id":2437,"datesubscribed":1449757703153,"publicvisible":2,"user":{"uri":"/CyberCoachServer/resources/users/subscriber/","username":"subscriber"},"sport":{"uri":"/CyberCoachServer/resources/sports/Boxing/","id":4,"name":"Boxing"}}'
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 02:59:25 GMT
+  recorded_at: Thu, 10 Dec 2015 14:36:40 GMT
 - request:
     method: get
     uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/subscriber/boxing
@@ -115,7 +50,7 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Thu, 10 Dec 2015 02:51:46 GMT
+      - Thu, 10 Dec 2015 14:28:57 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -127,5 +62,5 @@ http_interactions:
       string: Resource not available. Either the user is not subscribed to this sport
         or you are not authorized to view this resource.
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 02:59:25 GMT
+  recorded_at: Thu, 10 Dec 2015 14:36:40 GMT
 recorded_with: VCR 2.9.3

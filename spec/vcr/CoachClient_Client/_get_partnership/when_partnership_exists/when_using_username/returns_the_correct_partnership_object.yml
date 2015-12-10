@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 29 Nov 2015 03:22:05 GMT
+      - Thu, 10 Dec 2015 14:25:29 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -28,9 +28,9 @@ http_interactions:
       - Jetty(8.1.6.v20120903)
     body:
       encoding: UTF-8
-      string: '{"uri":"/CyberCoachServer/resources/partnerships/user123;user321/","id":9349,"userconfirmed1":true,"userconfirmed2":true,"datecreated":1448741774000,"publicvisible":2,"user1":{"uri":"/CyberCoachServer/resources/users/user123/","username":"user123"},"user2":{"uri":"/CyberCoachServer/resources/users/user321/","username":"user321"},"subscriptions":[{"uri":"/CyberCoachServer/resources/partnerships/user123;user321/Running/","id":1901}]}'
+      string: '{"uri":"/CyberCoachServer/resources/partnerships/user123;user321/","id":9349,"userconfirmed1":false,"userconfirmed2":true,"datecreated":1448741774000,"publicvisible":2,"user1":{"uri":"/CyberCoachServer/resources/users/user123/","username":"user123"},"user2":{"uri":"/CyberCoachServer/resources/users/user321/","username":"user321"},"subscriptions":[{"uri":"/CyberCoachServer/resources/partnerships/user123;user321/Running/","id":1901}]}'
     http_version: 
-  recorded_at: Sun, 29 Nov 2015 03:28:30 GMT
+  recorded_at: Thu, 10 Dec 2015 14:33:13 GMT
 - request:
     method: get
     uri: http://user123:@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
@@ -50,7 +50,7 @@ http_interactions:
       message: Unauthorized
     headers:
       Date:
-      - Sun, 29 Nov 2015 03:22:05 GMT
+      - Thu, 10 Dec 2015 14:25:30 GMT
       Www-Authenticate:
       - Basic
       Content-Type:
@@ -78,58 +78,10 @@ http_interactions:
         \                                               \n<br/>                                                \n<br/>
         \                                               \n<br/>                                                \n\n</body>\n</html>\n"
     http_version: 
-  recorded_at: Sun, 29 Nov 2015 03:28:30 GMT
+  recorded_at: Thu, 10 Dec 2015 14:33:13 GMT
 - request:
     method: get
-    uri: http://user321:@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 401
-      message: Unauthorized
-    headers:
-      Date:
-      - Sun, 29 Nov 2015 03:22:05 GMT
-      Www-Authenticate:
-      - Basic
-      Content-Type:
-      - text/html;charset=ISO-8859-1
-      Cache-Control:
-      - must-revalidate,no-cache,no-store
-      Content-Length:
-      - '1416'
-      Server:
-      - Jetty(8.1.6.v20120903)
-    body:
-      encoding: UTF-8
-      string: "<html>\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html;
-        charset=ISO-8859-1\"/>\n<title>Error 401 Unauthorized</title>\n</head>\n<body><h2>HTTP
-        ERROR 401</h2>\n<p>Problem accessing /CyberCoachServer/resources/authenticateduser/.
-        Reason:\n<pre>    Unauthorized</pre></p><hr /><i><small>Powered by Jetty://</small></i><br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n\n</body>\n</html>\n"
-    http_version: 
-  recorded_at: Sun, 29 Nov 2015 03:28:30 GMT
-- request:
-    method: get
-    uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/user123;user321
+    uri: http://user321:@diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/user123;user321
     body:
       encoding: US-ASCII
       string: ''
@@ -146,7 +98,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 29 Nov 2015 03:22:05 GMT
+      - Thu, 10 Dec 2015 14:25:30 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -155,7 +107,7 @@ http_interactions:
       - Jetty(8.1.6.v20120903)
     body:
       encoding: UTF-8
-      string: '{"uri":"/CyberCoachServer/resources/partnerships/user123;user321/","id":9349,"userconfirmed1":true,"userconfirmed2":true,"datecreated":1448741774000,"publicvisible":2,"user1":{"uri":"/CyberCoachServer/resources/users/user123/","username":"user123"},"user2":{"uri":"/CyberCoachServer/resources/users/user321/","username":"user321"},"subscriptions":[{"uri":"/CyberCoachServer/resources/partnerships/user123;user321/Running/","id":1901}]}'
+      string: '{"uri":"/CyberCoachServer/resources/partnerships/user123;user321/","id":9349,"userconfirmed1":false,"userconfirmed2":true,"datecreated":1448741774000,"publicvisible":2,"user1":{"uri":"/CyberCoachServer/resources/users/user123/","username":"user123"},"user2":{"uri":"/CyberCoachServer/resources/users/user321/","username":"user321"},"subscriptions":[{"uri":"/CyberCoachServer/resources/partnerships/user123;user321/Running/","id":1901}]}'
     http_version: 
-  recorded_at: Sun, 29 Nov 2015 03:28:30 GMT
+  recorded_at: Thu, 10 Dec 2015 14:33:13 GMT
 recorded_with: VCR 2.9.3

@@ -183,7 +183,7 @@ describe CoachClient::Entry do
 
     context "with an id" do
       let(:entry) { entry_with_id }
-      let(:id) { 786 }
+      let(:id) { 801 }
 
       context "when not authenticated" do
         it "raises an Unauthorized error" do

@@ -1,39 +1,8 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/subscriber/boxing
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 10 Dec 2015 02:51:46 GMT
-      Content-Type:
-      - application/json
-      Transfer-Encoding:
-      - chunked
-      Server:
-      - Jetty(8.1.6.v20120903)
-    body:
-      encoding: UTF-8
-      string: '{"uri":"/CyberCoachServer/resources/users/subscriber/Boxing/","id":2429,"datesubscribed":1449715905929,"publicvisible":2,"user":{"uri":"/CyberCoachServer/resources/users/subscriber/","username":"subscriber"},"sport":{"uri":"/CyberCoachServer/resources/sports/Boxing/","id":4,"name":"Boxing"}}'
-    http_version: 
-  recorded_at: Thu, 10 Dec 2015 02:59:24 GMT
-- request:
-    method: get
-    uri: http://subscriber:@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
+    method: delete
+    uri: http://subscriber:@diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/subscriber/boxing
     body:
       encoding: US-ASCII
       string: ''
@@ -50,33 +19,16 @@ http_interactions:
       message: Unauthorized
     headers:
       Date:
-      - Thu, 10 Dec 2015 02:51:46 GMT
+      - Thu, 10 Dec 2015 14:28:56 GMT
       Www-Authenticate:
-      - Basic
-      Content-Type:
-      - text/html;charset=ISO-8859-1
-      Cache-Control:
-      - must-revalidate,no-cache,no-store
+      - basic realm="userdbauth"
       Content-Length:
-      - '1416'
+      - '0'
       Server:
       - Jetty(8.1.6.v20120903)
     body:
       encoding: UTF-8
-      string: "<html>\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html;
-        charset=ISO-8859-1\"/>\n<title>Error 401 Unauthorized</title>\n</head>\n<body><h2>HTTP
-        ERROR 401</h2>\n<p>Problem accessing /CyberCoachServer/resources/authenticateduser/.
-        Reason:\n<pre>    Unauthorized</pre></p><hr /><i><small>Powered by Jetty://</small></i><br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n<br/>
-        \                                               \n<br/>                                                \n\n</body>\n</html>\n"
+      string: ''
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 02:59:25 GMT
+  recorded_at: Thu, 10 Dec 2015 14:36:40 GMT
 recorded_with: VCR 2.9.3

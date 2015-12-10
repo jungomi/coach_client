@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/user321/running
+    uri: http://user321:@diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/user321/running
     body:
       encoding: US-ASCII
       string: ''
@@ -19,7 +19,7 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Sun, 29 Nov 2015 03:22:07 GMT
+      - Thu, 10 Dec 2015 14:25:31 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -31,5 +31,5 @@ http_interactions:
       string: Resource not available. Either the user is not subscribed to this sport
         or you are not authorized to view this resource.
     http_version: 
-  recorded_at: Sun, 29 Nov 2015 03:28:32 GMT
+  recorded_at: Thu, 10 Dec 2015 14:33:15 GMT
 recorded_with: VCR 2.9.3
