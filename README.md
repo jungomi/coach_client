@@ -24,7 +24,7 @@ Or install it yourself as:
 ## Documentation
 
 - [Rubygem website](https://rubygems.org/gems/coach_client)
-- [Documentation](http://www.rubydoc.info/gems/coach_client/0.1.0)
+- [Documentation](http://www.rubydoc.info/gems/coach_client)
 - [GitHub](https://github.com/jungomi/coach_client)
 
 ## Usage
