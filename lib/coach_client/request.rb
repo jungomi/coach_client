@@ -82,6 +82,7 @@ module CoachClient
     # @param [Hash] header
     # @return [CoachClient::Response]
     def self.delete(url, username: nil, password: nil, **header)
+      header.merge!(DEFAULT_HEADER)
       begin
         response = RestClient::Request.execute(method: :delete, url: url,
                                                user: username,
