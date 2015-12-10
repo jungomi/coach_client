@@ -61,7 +61,6 @@ module CoachClient
     # @raise [CoachClient::NotFound] if the sport does not exist
     # @return [CoachClient::Sport] the updated sport
     def update
-      raise CoachClient::NotFound, 'Sport not found' unless exist?
       response = CoachClient::Request.get(url)
       response = response.to_h
       @id = response[:id]

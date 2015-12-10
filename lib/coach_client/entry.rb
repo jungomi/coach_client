@@ -96,7 +96,7 @@ module CoachClient
     # @raise [CoachClient::NotFound] if the entry does not exist
     # @return [CoachClient::User] the updated user
     def update
-      raise CoachClient::NotFound, 'Entry not found' unless exist?
+      raise CoachClient::NotFound.new(self), 'Entry not found' if @id.nil?
       response = CoachClient::Request.get(url, username: user.username,
                                           password: user.password)
       tag = "entry#{@subscription.sport}"

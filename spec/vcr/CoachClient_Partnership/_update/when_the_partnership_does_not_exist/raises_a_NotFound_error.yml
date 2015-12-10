@@ -2,7 +2,39 @@
 http_interactions:
 - request:
     method: get
-    uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/partner1;nopartner
+    uri: http://partner1:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 10 Dec 2015 16:24:11 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/users/partner1/","username":"partner1","password":"*","realname":"Partner
+        1","email":"partner@email.com","datecreated":1449507777000,"publicvisible":2}'
+    http_version: 
+  recorded_at: Thu, 10 Dec 2015 16:31:55 GMT
+- request:
+    method: get
+    uri: http://partner1:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/partner1;nopartner
     body:
       encoding: US-ASCII
       string: ''
@@ -19,7 +51,7 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Mon, 07 Dec 2015 17:31:01 GMT
+      - Thu, 10 Dec 2015 16:24:11 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -30,5 +62,5 @@ http_interactions:
       encoding: UTF-8
       string: Requested partnership not found!
     http_version: 
-  recorded_at: Mon, 07 Dec 2015 17:38:24 GMT
+  recorded_at: Thu, 10 Dec 2015 16:31:55 GMT
 recorded_with: VCR 2.9.3

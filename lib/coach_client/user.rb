@@ -96,7 +96,6 @@ module CoachClient
     # @raise [CoachClient::NotFound] if the user does not exist
     # @return [CoachClient::User] the updated user
     def update
-      raise CoachClient::NotFound, 'User not found' unless exist?
       response = CoachClient::Request.get(url, username: @username,
                                           password: @password)
       response = response.to_h
@@ -156,7 +155,7 @@ module CoachClient
     # @raise [CoachClient::Unauthorized] if the user is not authorized
     # @return [true]
     def delete
-      raise CoachClient::NotFound unless exist?
+      raise CoachClient::NotFound.new(self), 'User not found' unless exist?
       CoachClient::Request.delete(url, username: @username, password: @password)
       true
     end

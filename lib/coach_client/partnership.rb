@@ -106,7 +106,6 @@ module CoachClient
     # @raise [CoachClient::NotFound] if the partnership does not exist
     # @return [CoachClient::Partnership] the updated partnership
     def update
-      raise CoachClient::NotFound.new(self), 'Partnership not found' unless exist?
       response = if @user1.authenticated?
                    CoachClient::Request.get(url, username: @user1.username,
                                             password: @user1.password)

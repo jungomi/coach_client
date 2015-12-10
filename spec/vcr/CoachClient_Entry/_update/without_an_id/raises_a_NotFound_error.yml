@@ -1,0 +1,34 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://subscriber:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/subscriber/running/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 10 Dec 2015 16:24:10 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/users/subscriber/Running/","links":[{"href":"/CyberCoachServer/resources/users/subscriber/Running/?start=5&size=5","description":"next"}],"id":2406,"datesubscribed":1449587752000,"publicvisible":2,"user":{"uri":"/CyberCoachServer/resources/users/subscriber/","username":"subscriber"},"sport":{"uri":"/CyberCoachServer/resources/sports/Running/","id":1,"name":"Running"},"entries":[{"entryrunning":{"uri":"/CyberCoachServer/resources/users/subscriber/Running/779/","id":779,"datecreated":1449587888000,"datemodified":1449587888000}},{"entryrunning":{"uri":"/CyberCoachServer/resources/users/subscriber/Running/780/","id":780,"datecreated":1449587901000,"datemodified":1449588390000}},{"entryrunning":{"uri":"/CyberCoachServer/resources/users/subscriber/Running/785/","id":785,"datecreated":1449588151000,"datemodified":1449588151000}},{"entryrunning":{"uri":"/CyberCoachServer/resources/users/subscriber/Running/787/","id":787,"datecreated":1449588201000,"datemodified":1449588201000}},{"entryrunning":{"uri":"/CyberCoachServer/resources/users/subscriber/Running/790/","id":790,"datecreated":1449588389000,"datemodified":1449588389000}}]}'
+    http_version: 
+  recorded_at: Thu, 10 Dec 2015 16:31:54 GMT
+recorded_with: VCR 2.9.3
