@@ -1,6 +1,6 @@
 module CoachClient
   # A user resource of the CyberCoach service.
-  class User < Resource
+  class User < CoachClient::Resource
     # The size of the requests for the {.list} with all = true
     LIST_ALL_SIZE = 1000
 

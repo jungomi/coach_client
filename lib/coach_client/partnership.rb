@@ -1,6 +1,6 @@
 module CoachClient
   # A partnership resource of the CyberCoach service.
-  class Partnership < Resource
+  class Partnership < CoachClient::Resource
     # The size of the requests for the {.list} with all = true
     LIST_ALL_SIZE = 1000
 

@@ -4,7 +4,7 @@ module CoachClient
   # @note Use the subclass {CoachClient::UserSubscription} or
   #   {CoachClient::PartnershipSubscription} for a user or partnership
   #   subscription respectively.
-  class Subscription < Resource
+  class Subscription < CoachClient::Resource
     # @return [Integer]
     attr_reader :id, :datesubscribed
 

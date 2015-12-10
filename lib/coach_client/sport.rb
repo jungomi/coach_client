@@ -1,6 +1,6 @@
 module CoachClient
   # A sport resource of the CyberCoach service.
-  class Sport < Resource
+  class Sport < CoachClient::Resource
     # @return [Integer]
     attr_reader :id
 

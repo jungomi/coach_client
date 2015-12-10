@@ -1,6 +1,6 @@
 module CoachClient
   # A entry resource of the CyberCoach serivce.
-  class Entry < Resource
+  class Entry < CoachClient::Resource
     # @return [Integer]
     attr_reader :id, :datecreated, :datemodified
 

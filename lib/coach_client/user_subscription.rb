@@ -1,6 +1,6 @@
 module CoachClient
   # A user subscription resource of the CyberCoach service.
-  class UserSubscription < Subscription
+  class UserSubscription < CoachClient::Subscription
     # @return [Integer]
     attr_reader :id, :datesubscribed
 
