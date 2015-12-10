@@ -19,7 +19,7 @@ http_interactions:
       message: Unauthorized
     headers:
       Date:
-      - Tue, 08 Dec 2015 00:31:13 GMT
+      - Thu, 10 Dec 2015 02:55:09 GMT
       Www-Authenticate:
       - Basic
       Content-Type:
@@ -47,7 +47,38 @@ http_interactions:
         \                                               \n<br/>                                                \n<br/>
         \                                               \n<br/>                                                \n\n</body>\n</html>\n"
     http_version: 
-  recorded_at: Tue, 08 Dec 2015 00:38:39 GMT
+  recorded_at: Thu, 10 Dec 2015 03:02:47 GMT
+- request:
+    method: get
+    uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/partner1;partner2/boxing
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 10 Dec 2015 02:55:09 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(8.1.6.v20120903)
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/CyberCoachServer/resources/partnerships/partner1;partner2/Boxing/","id":2430,"datesubscribed":1449716108993,"publicvisible":2,"partnership":{"uri":"/CyberCoachServer/resources/partnerships/partner1;partner2/","id":10869},"sport":{"uri":"/CyberCoachServer/resources/sports/Boxing/","id":4,"name":"Boxing"}}'
+    http_version: 
+  recorded_at: Thu, 10 Dec 2015 03:02:48 GMT
 - request:
     method: get
     uri: http://partner2:@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
@@ -67,7 +98,7 @@ http_interactions:
       message: Unauthorized
     headers:
       Date:
-      - Tue, 08 Dec 2015 00:31:13 GMT
+      - Thu, 10 Dec 2015 02:55:09 GMT
       Www-Authenticate:
       - Basic
       Content-Type:
@@ -95,5 +126,5 @@ http_interactions:
         \                                               \n<br/>                                                \n<br/>
         \                                               \n<br/>                                                \n\n</body>\n</html>\n"
     http_version: 
-  recorded_at: Tue, 08 Dec 2015 00:38:39 GMT
+  recorded_at: Thu, 10 Dec 2015 03:02:48 GMT
 recorded_with: VCR 2.9.3
