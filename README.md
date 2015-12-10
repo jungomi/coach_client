@@ -1,4 +1,5 @@
 # CoachClient
+[![Gem Version](https://badge.fury.io/rb/coach_client.svg)](https://badge.fury.io/rb/coach_client)
 
 A wrapper around the
 [CyberCoach](https://diuf.unifr.ch/drupal/softeng/teaching/studentprojects/cyber-coach-rest)
