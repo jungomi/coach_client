@@ -5,6 +5,10 @@ A wrapper around the
 [CyberCoach](https://diuf.unifr.ch/drupal/softeng/teaching/studentprojects/cyber-coach-rest)
 API of the University of Fribourg.
 
+- [Rubygem website](https://rubygems.org/gems/coach_client)
+- [API Documentation](http://www.rubydoc.info/gems/coach_client)
+- [GitHub](https://github.com/jungomi/coach_client)
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -20,12 +24,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install coach_client
-
-## Documentation
-
-- [Rubygem website](https://rubygems.org/gems/coach_client)
-- [Documentation](http://www.rubydoc.info/gems/coach_client)
-- [GitHub](https://github.com/jungomi/coach_client)
 
 ## Usage
 
@@ -188,9 +186,9 @@ used almost identically.
 As for the other resources the user or partnership and the sport may be passed
 as the corresponding object. When an argument is not the object, it tries to
 create it. For partnerships a string representation is expected in that case,
-which represents the two users involved separated by a semicolon.
-Using already existing objects is recommended to preserve the already assigned
-attributes.
+which represents the two users involved separated by a semicolon (e.g.
+`'user1;user2'`). Using already existing objects is recommended to preserve the
+already assigned attributes.
 
 ```ruby
 user_sub = CoachClient::UserSubscription.new(client, user, sport)
@@ -210,9 +208,9 @@ partnership.subscriptions
 
 #### Entry
 
-An entry corresponds to subscription. The entry provides the method `create` to
-create a new entry. This is automatically invoked when trying to save it, if the
-entry does not exist on the CyberCoach service. When create is used on an
+An entry corresponds to a subscription. The entry provides the method `create` to
+create a new entry. This is automatically invoked when trying to save the entry,
+if the it does not exist on the CyberCoach service. When create is used on an
 already existing entry, it creates a new one with the same attributes (apart
 from the id).
 
