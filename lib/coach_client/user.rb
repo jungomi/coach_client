@@ -185,6 +185,7 @@ module CoachClient
     #
     # @return [Boolean]
     def authenticated?
+      false if @password.nil?
       @client.authenticated?(@username, @password)
     end
 
