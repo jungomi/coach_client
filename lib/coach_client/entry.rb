@@ -61,6 +61,12 @@ module CoachClient
     # @option info [Date] :entrydate
     # @option info [Integer] :entryduration
     # @option info [String] :entrylocation
+    # @option info [Integer] :roundduration for boxing
+    # @option info [Integer] :numberofrounds except for soccer
+    # @option info [Integer] :courselength for cycling and running
+    # @option info [String] :coursetype for cycling and running
+    # @option info [String] :track for cycling and running
+    # @option info [String] :bicycletype for cycling
     # @return [CoachClient::Entry]
     def initialize(client, subscription, info = {})
       super(client)
