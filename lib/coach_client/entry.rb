@@ -161,10 +161,8 @@ module CoachClient
 
     # Returns whether the resource exists on the CyberCoach service.
     #
-    # @param [String] username
-    # @param [String] password
     # @return [Boolean]
-    def exist?(username: nil, password: nil)
+    def exist?
       return false unless @id
       if user.authenticated?
         super(username: user.username, password: user.password)
