@@ -16,6 +16,31 @@ module CoachClient
     # @return [String]
     attr_accessor :comment, :entrylocation
 
+    # For every sport but soccer.
+    #
+    # @return [Integer]
+    attr_accessor :numberofrounds
+
+    # For boxing.
+    #
+    # @return [Integer]
+    attr_accessor :roundduration
+
+    # For cycling and running.
+    #
+    # @return [Integer]
+    attr_accessor :courselength
+
+    # For cycling and running.
+    #
+    # @return [String]
+    attr_accessor :coursetype, :track
+
+    # For cycling.
+    #
+    # @return [String]
+    attr_accessor :bicycletype
+
     # Extracts the entry id from the URI
     #
     # @param [String] uri
@@ -46,6 +71,18 @@ module CoachClient
       @entrydate = info[:entrydate]
       @entryduration = info[:entryduration]
       @entrylocation = info[:entrylocation]
+      unless subscription.sport.sport == :soccer
+        @numberofrounds = info[:numberofrounds]
+      end
+      if subscription.sport.sport == :boxing
+        @roundduration = info[:roundduration]
+      end
+      if subscription.sport.sport == :cycling || subscription.sport.sport == :running
+        @courselength = info[:courselength]
+        @coursetype = info[:coursetype]
+        @track = info[:track]
+      end
+      @bicycletype = info[:bicycletype] if subscription.sport.sport == :cycling
     end
 
     # Updates the entry with the data from the CyberCoach service.
@@ -69,6 +106,18 @@ module CoachClient
       @entrydate = response[:entrydate]
       @entryduration = response[:entryduration]
       @entrylocation = response[:entrylocation]
+      unless @subscription.sport.sport == :soccer
+        @numberofrounds = response[:numberofrounds]
+      end
+      if @subscription.sport.sport == :boxing
+        @roundduration = response[:roundduration]
+      end
+      if @subscription.sport.sport == :cycling || @subscription.sport.sport == :running
+        @courselength = response[:courselength]
+        @coursetype = response[:coursetype]
+        @track = response[:track]
+      end
+      @bicycletype = response[:bicycletype] if @subscription.sport.sport == :cycling
       self
     end
 
