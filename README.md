@@ -21,6 +21,12 @@ Or install it yourself as:
 
     $ gem install coach_client
 
+## Documentation
+
+- [Rubygem website](https://rubygems.org/gems/coach_client)
+- [Documentation](http://www.rubydoc.info/gems/coach_client/0.1.0)
+- [GitHub](https://github.com/jungomi/coach_client)
+
 ## Usage
 
 ### Client
