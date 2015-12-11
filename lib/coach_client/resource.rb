@@ -46,7 +46,7 @@ module CoachClient
 
     private
 
-    def has_next(links)
+    def next?(links)
       false if links.nil?
       links.any? { |link| link[:description] == "next" }
     end

@@ -113,7 +113,7 @@ module CoachClient
           users.reject! { |username| username == @username }
           @partnerships << CoachClient::Partnership.new(client, self, users.first)
         end
-        break unless all && has_next(response[:links])
+        break unless all && next?(response[:links])
         start += size
       end
       @realname = response[:realname]

@@ -59,7 +59,7 @@ module CoachClient
           id = CoachClient::Entry.extract_id_from_uri(e[tag.to_sym][:uri])
           @entries << CoachClient::Entry.new(client, self, id: id)
         end
-        break unless all && has_next(response[:links])
+        break unless all && next?(response[:links])
         start += size
       end
       @id = response[:id]
