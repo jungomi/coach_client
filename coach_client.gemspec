@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Michael Jungo", "Amanda Karavolia", "Andrea Liechti", "Jocelyn Thode", "Simon Brulhart"]
   spec.email         = ["michael.jungo@unifr.ch"]
 
-  spec.summary       = %q{A wrapper around the CyberCoach API of the University of Fribourg}
+  spec.summary       = "A wrapper around the CyberCoach API of the University of Fribourg"
   spec.homepage      = "https://github.com/jungomi/coach_client"
   spec.license       = "MIT"
 
