@@ -15,4 +15,3 @@ VCR.configure do |c|
   c.configure_rspec_metadata!
   c.ignore_hosts 'codeclimate.com'
 end
-

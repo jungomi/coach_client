@@ -256,4 +256,3 @@ describe CoachClient::Client do
     end
   end
 end
-

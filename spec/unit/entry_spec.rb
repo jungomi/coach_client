@@ -201,4 +201,3 @@ describe CoachClient::Entry do
     end
   end
 end
-

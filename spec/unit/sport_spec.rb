@@ -98,4 +98,3 @@ describe CoachClient::Sport do
     end
   end
 end
-

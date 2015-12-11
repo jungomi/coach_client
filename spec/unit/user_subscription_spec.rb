@@ -122,4 +122,3 @@ describe CoachClient::UserSubscription do
     end
   end
 end
-

@@ -224,4 +224,3 @@ describe CoachClient::User do
     end
   end
 end
-

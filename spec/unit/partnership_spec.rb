@@ -324,4 +324,3 @@ describe CoachClient::Partnership do
     end
   end
 end
-
