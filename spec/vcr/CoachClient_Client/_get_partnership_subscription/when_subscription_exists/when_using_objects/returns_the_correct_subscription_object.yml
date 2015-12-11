@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://user123:@diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/user123;user321/running
+    uri: http://user123:@diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/user123;user321/running?size=20&start=0
     body:
       encoding: US-ASCII
       string: ''
@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 10 Dec 2015 17:07:17 GMT
+      - Fri, 11 Dec 2015 19:21:51 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -30,5 +30,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"uri":"/CyberCoachServer/resources/partnerships/user123;user321/Running/","id":1901,"datesubscribed":1448752528000,"publicvisible":2,"partnership":{"uri":"/CyberCoachServer/resources/partnerships/user123;user321/","id":9349},"sport":{"uri":"/CyberCoachServer/resources/sports/Running/","id":1,"name":"Running"}}'
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 17:15:00 GMT
+  recorded_at: Fri, 11 Dec 2015 19:29:42 GMT
 recorded_with: VCR 2.9.3

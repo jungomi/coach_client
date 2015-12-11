@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://subscriber:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/subscriber/cycling
+    uri: http://subscriber:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/users/subscriber/cycling?size=20&start=0
     body:
       encoding: US-ASCII
       string: ''
@@ -19,7 +19,7 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Thu, 10 Dec 2015 14:24:42 GMT
+      - Fri, 11 Dec 2015 19:18:06 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -31,5 +31,5 @@ http_interactions:
       string: Resource not available. Either the user is not subscribed to this sport
         or you are not authorized to view this resource.
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 14:32:25 GMT
+  recorded_at: Fri, 11 Dec 2015 19:25:57 GMT
 recorded_with: VCR 2.9.3

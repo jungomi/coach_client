@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://partner1:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
+    uri: http://partner1:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/partner1;partner2/running?size=20&start=0
     body:
       encoding: US-ASCII
       string: ''
@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 08 Dec 2015 00:31:11 GMT
+      - Fri, 11 Dec 2015 19:18:05 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -28,102 +28,7 @@ http_interactions:
       - Jetty(8.1.6.v20120903)
     body:
       encoding: UTF-8
-      string: '{"uri":"/CyberCoachServer/resources/users/partner1/","username":"partner1","password":"*","realname":"Partner
-        1","email":"partner@email.com","datecreated":1449507777103,"publicvisible":2}'
+      string: '{"uri":"/CyberCoachServer/resources/partnerships/partner1;partner2/Running/","id":2286,"datesubscribed":1449534617000,"publicvisible":2,"partnership":{"uri":"/CyberCoachServer/resources/partnerships/partner1;partner2/","id":10869},"sport":{"uri":"/CyberCoachServer/resources/sports/Running/","id":1,"name":"Running"}}'
     http_version: 
-  recorded_at: Tue, 08 Dec 2015 00:38:37 GMT
-- request:
-    method: get
-    uri: http://diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/partner1;partner2/running
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Tue, 08 Dec 2015 00:31:11 GMT
-      Content-Type:
-      - application/json
-      Transfer-Encoding:
-      - chunked
-      Server:
-      - Jetty(8.1.6.v20120903)
-    body:
-      encoding: UTF-8
-      string: '{"uri":"/CyberCoachServer/resources/partnerships/partner1;partner2/Running/","id":2286,"datesubscribed":1449534617706,"publicvisible":2,"partnership":{"uri":"/CyberCoachServer/resources/partnerships/partner1;partner2/","id":10869},"sport":{"uri":"/CyberCoachServer/resources/sports/Running/","id":1,"name":"Running"}}'
-    http_version: 
-  recorded_at: Tue, 08 Dec 2015 00:38:37 GMT
-- request:
-    method: get
-    uri: http://partner1:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/authenticateduser/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Tue, 08 Dec 2015 00:31:12 GMT
-      Content-Type:
-      - application/json
-      Transfer-Encoding:
-      - chunked
-      Server:
-      - Jetty(8.1.6.v20120903)
-    body:
-      encoding: UTF-8
-      string: '{"uri":"/CyberCoachServer/resources/users/partner1/","username":"partner1","password":"*","realname":"Partner
-        1","email":"partner@email.com","datecreated":1449507777103,"publicvisible":2}'
-    http_version: 
-  recorded_at: Tue, 08 Dec 2015 00:38:37 GMT
-- request:
-    method: get
-    uri: http://partner1:password@diufvm31.unifr.ch:8090/CyberCoachServer/resources/partnerships/partner1;partner2/running
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Tue, 08 Dec 2015 00:31:12 GMT
-      Content-Type:
-      - application/json
-      Transfer-Encoding:
-      - chunked
-      Server:
-      - Jetty(8.1.6.v20120903)
-    body:
-      encoding: UTF-8
-      string: '{"uri":"/CyberCoachServer/resources/partnerships/partner1;partner2/Running/","id":2286,"datesubscribed":1449534617706,"publicvisible":2,"partnership":{"uri":"/CyberCoachServer/resources/partnerships/partner1;partner2/","id":10869},"sport":{"uri":"/CyberCoachServer/resources/sports/Running/","id":1,"name":"Running"}}'
-    http_version: 
-  recorded_at: Tue, 08 Dec 2015 00:38:37 GMT
+  recorded_at: Fri, 11 Dec 2015 19:25:56 GMT
 recorded_with: VCR 2.9.3
