@@ -59,7 +59,7 @@ module CoachClient
       if all
         total = self.total(client)
         start = 0
-        size = @client.max_size
+        size = client.max_size
       end
       loop do
         response = CoachClient::Request.get(client.url + path,
