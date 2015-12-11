@@ -18,4 +18,3 @@ require 'coach_client/version'
 # A wrapper around the CyberCoach service of the University of Fribourg
 module CoachClient
 end
-

@@ -183,4 +183,3 @@ module CoachClient
     end
   end
 end
-
