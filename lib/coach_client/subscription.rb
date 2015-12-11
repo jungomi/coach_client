@@ -37,22 +37,34 @@ module CoachClient
     #
     # @raise [CoachClient::NotFound] if the subscription does not exist
     # @param [CoachClient::User] user
+    # @param [Integer] size the number of entries
+    # @param [Integer] start the start of entries list
+    # @param [Boolean] all whether all entries are retrieved
     # @return [CoachClient::Subscription] the updated subscription
-    def update(user)
-      response = CoachClient::Request.get(url, username: user.username,
-                                          password: user.password)
-      response = response.to_h
-      @id = response[:id]
-      @datesubscribed = response[:datesubscribed]
-      @publicvisible = response[:publicvisible]
+    def update(user, size: 20, start: 0, all: false)
+      response = {}
+      if all
+        start = 0
+        size = @client.max_size
+      end
       @entries = []
-      unless response[:entries].nil?
+      loop do
+        response = CoachClient::Request.get(url, username: user.username,
+                                            password: user.password,
+                                            params: { start: start, size: size })
+        response = response.to_h
+        break if response[:entries].nil?
         response[:entries].each do |e|
           tag = "entry#{@sport}"
           id = CoachClient::Entry.extract_id_from_uri(e[tag.to_sym][:uri])
           @entries << CoachClient::Entry.new(client, self, id: id)
         end
+        break unless all && has_next(response[:links])
+        start += size
       end
+      @id = response[:id]
+      @datesubscribed = response[:datesubscribed]
+      @publicvisible = response[:publicvisible]
       self
     end
 

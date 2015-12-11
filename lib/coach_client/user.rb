@@ -1,9 +1,6 @@
 module CoachClient
   # A user resource of the CyberCoach service.
   class User < CoachClient::Resource
-    # The size of the requests for the {.list} with all = true
-    LIST_ALL_SIZE = 1000
-
     # @return [String]
     attr_reader :username
 
@@ -56,7 +53,7 @@ module CoachClient
       if all
         total = self.total(client)
         start = 0
-        size = LIST_ALL_SIZE
+        size = client.max_size
       end
       loop do
         response = CoachClient::Request.get(client.url + path,
@@ -93,24 +90,36 @@ module CoachClient
 
     # Updates the user with the data from the CyberCoach service.
     #
+    # @param [Integer] size the number of partnerships
+    # @param [Integer] start the start of partnerships list
+    # @param [Boolean] all whether all partnerships are retrieved
     # @raise [CoachClient::NotFound] if the user does not exist
     # @return [CoachClient::User] the updated user
-    def update
-      response = CoachClient::Request.get(url, username: @username,
-                                          password: @password)
-      response = response.to_h
-      @realname = response[:realname]
-      @email = response[:email]
-      @publicvisible = response[:publicvisible]
-      @datecreated = response[:datecreated]
+    def update(size: 20, start: 0, all: false)
+      response = {}
+      if all
+        start = 0
+        size = @client.max_size
+      end
       @partnerships = []
-      unless response[:partnerships].nil?
+      loop do
+        response = CoachClient::Request.get(url, username: @username,
+                                            password: @password,
+                                            params: { start: start, size: size })
+        response = response.to_h
+        break if response[:partnerships].nil?
         response[:partnerships].each do |p|
           users = CoachClient::Partnership.extract_users_from_uri(p[:uri])
           users.reject! { |username| username == @username }
           @partnerships << CoachClient::Partnership.new(client, self, users.first)
         end
+        break unless all && has_next(response[:links])
+        start += size
       end
+      @realname = response[:realname]
+      @email = response[:email]
+      @publicvisible = response[:publicvisible]
+      @datecreated = response[:datecreated]
       @subscriptions = []
       unless response[:subscriptions].nil?
         response[:subscriptions].each do |s|

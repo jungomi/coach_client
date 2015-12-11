@@ -32,10 +32,13 @@ module CoachClient
 
     # Updates the user subscription with the data from the CyberCoach service.
     #
+    # @param [Integer] size the number of entries
+    # @param [Integer] start the start of entries list
+    # @param [Boolean] all whether all entries are retrieved
     # @raise [CoachClient::NotFound] if the user subscription does not exist
     # @return [CoachClient::UserSubscription] the updated user subscription
-    def update
-      super(@user)
+    def update(size: 20, start: 0, all: false)
+      super(@user, size: size, start: start, all: all)
     end
 
     # Saves the user subscription to the CyberCoach service.

@@ -1,9 +1,6 @@
 module CoachClient
   # A partnership resource of the CyberCoach service.
   class Partnership < CoachClient::Resource
-    # The size of the requests for the {.list} with all = true
-    LIST_ALL_SIZE = 1000
-
     # @return [Integer]
     attr_reader :id, :datecreated
 
@@ -62,7 +59,7 @@ module CoachClient
       if all
         total = self.total(client)
         start = 0
-        size = LIST_ALL_SIZE
+        size = @client.max_size
       end
       loop do
         response = CoachClient::Request.get(client.url + path,

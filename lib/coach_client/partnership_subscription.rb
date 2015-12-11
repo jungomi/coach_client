@@ -35,15 +35,18 @@ module CoachClient
     # Updates the partnership subscription with the data from the CyberCoach
     # service.
     #
+    # @param [Integer] size the number of entries
+    # @param [Integer] start the start of entries list
+    # @param [Boolean] all whether all entries are retrieved
     # @raise [CoachClient::NotFound] if the partnership subscription does not
     #   exist
     # @return [CoachClient::PartnershipSubscription] the updated partnership
     #   subscription
-    def update
+    def update(size: 20, start: 0, all: false)
       begin
-        super(@partnership.user1)
+        super(@partnership.user1, size: size, start: start, all: all)
       rescue CoachClient::Exception
-        super(@partnership.user2)
+        super(@partnership.user2, size: size, start: start, all: all)
       end
     end
 

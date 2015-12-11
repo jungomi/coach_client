@@ -6,13 +6,20 @@ module CoachClient
     # @return [String]
     attr_reader :url
 
+    # The maximum size of the requests
+    #
+    # @return [Integer]
+    attr_accessor :max_size
+
     # Creates a new client with the CyberCoach informations.
     #
     # @param [String] host the host address
     # @param [String] path the path to the resources
+    # @param [Integer] max_size the maximum size of requests
     # @return [CoachClient::Client]
-    def initialize(host, path = '/')
+    def initialize(host, path = '/', max_size = 1000)
       @url = host + path
+      @max_size = max_size
     end
 
     # Returns whether the given credentials are valid.

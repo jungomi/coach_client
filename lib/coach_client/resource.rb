@@ -43,5 +43,12 @@ module CoachClient
       end
       hash
     end
+
+    private
+
+    def has_next(links)
+      false if links.nil?
+      links.any? { |link| link[:description] == "next" }
+    end
   end
 end
