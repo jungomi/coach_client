@@ -32,7 +32,8 @@ Or install it yourself as:
 ### Client
 
 Every action to a CyberCoach service requires a client. The client contains the
-URL to the service and provides some methods to retrieve resources.
+URL to the service, the maximum size of requests and provides some methods to
+retrieve resources.
 
 ```ruby
 client = CoachClient::Client.new('http://diufvm31.unifr.ch:8090',
@@ -138,10 +139,12 @@ To obtain the partnerships of a specific user, use the partnerships attribute of
 the user, instead of traversing the entire list. Even though the partnership
 on the CyberCoach service does not always provide the user that had done the
 request as the first user in the partnership, the list of partnerships returned
-ensures that `user1 == user`.
+ensures that `user1 == user`. The `update` method takes the same parameters as
+the `list` and is applied to the partnerships list, because the CyberCoach
+service does only provide chunks of partnerships.
 
 ```ruby
-user.update # needed to get the partnerships from the CyberCoach service
+user.update(all: true) # needed to get all the partnerships from the CyberCoach service
 user.partnerships
 
 user.partnerships.all? { |partnership| partnership.user1 == user } #=> true
@@ -231,10 +234,10 @@ entry.comment #=> 'my comment'
 ```
 
 To see all entries of a subscription use the attribute entries of the
-subscription.
-
+subscription. Similar to `user.update` the subscription's `update` takes
+additional parameters to specify the list of subscriptions to retrieve.
 ```ruby
-user_sub.update # needed to get the entries from the CyberCoach service
+user_sub.update(all: true) # needed to get all the entries from the CyberCoach service
 user.entries
 ```
 
