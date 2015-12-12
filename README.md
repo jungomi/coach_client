@@ -122,7 +122,7 @@ partnership = CoachClient::Partnership.new(client, user, 'mypartner')
 partnership.user2.password = 'hispassword'
 ```
 
-The partnership provides a class method `list` is used to obtain a list of
+The partnership provides a class method `list` that is used to obtain a list of
 partnerships, which works the same way as the `User.list`.
 
 ```ruby
@@ -215,7 +215,7 @@ partnership.subscriptions
 
 An entry corresponds to a subscription. The entry provides the method `create` to
 create a new entry. This is automatically invoked when trying to save the entry,
-if the it does not exist on the CyberCoach service. When create is used on an
+if it does not exist on the CyberCoach service. When create is used on an
 already existing entry, it creates a new one with the same attributes (apart
 from the id).
 
