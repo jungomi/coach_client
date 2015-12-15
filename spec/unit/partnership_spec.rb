@@ -21,7 +21,6 @@ describe CoachClient::Partnership do
     let(:uri) { "http://example.com/partnerships/#{user1};#{user2}/" }
 
     it "returns the two usernames" do
-      puts uri
       extracted_user1, extracted_user2 = subject.extract_users_from_uri(uri)
       expect(extracted_user1).to eql(user1)
       expect(extracted_user2).to eql(user2)
